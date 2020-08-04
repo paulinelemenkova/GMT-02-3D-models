@@ -1,5 +1,5 @@
 #!/bin/sh
-# Purpose: 3D grid, 165/45 azimuth, from the ETOPO5 from 5 arc min (here: Aleutian Trench)
+# Purpose: 3D grid, 165/45 azimuth, from the ETOPO5 from 5 arc min (here: Bay of Bengal & Andaman Sea)
 # GMT modules: grdcut, grd2cpt, grdcontour, pscoast, grdview, logo, psconvert
 # Unix prog: rm
 # Step-1. Cut grid
