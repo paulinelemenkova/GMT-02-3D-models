@@ -1,5 +1,5 @@
 #!/bin/sh
-# Purpose: 3D grid, 125/45 azimuth, from the ETOPO1 from 1 arc min (here: Lebanon)
+# Purpose: 3D grid, 125/45 azimuth, from the ETOPO1 from 1 arc min (here: Ethiopia)
 # GMT modules: grdcut, grd2cpt, grdcontour, pscoast, grdview, logo, psconvert
 # Unix prog: rm
 
