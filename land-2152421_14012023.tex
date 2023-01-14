@@ -1,0 +1,1558 @@
+%  LaTeX support: latex@mdpi.com 
+%  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
+
+%=================================================================
+\documentclass[land,article,accept,pdftex,moreauthors]{Definitions/mdpi} 
+
+% MDPI internal commands
+\firstpage{1} 
+\makeatletter 
+\setcounter{page}{\@firstpage} 
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2023}
+\copyrightyear{2023}
+\externaleditor{Academic Editor: }%MDPI: Please add if necessary. % Authors: we don't know Academic Editor yet.
+\datereceived{25 December 2022 %MDPI: Newly added information, please confirm. % Authors: yes, we confirm.
+} 
+\daterevised{11 January 2023} % Only for the journal Acoustics. Authors: if required - yes, we confirm.
+\dateaccepted{13 January 2023} % Authors: yes, we confirm.
+\datepublished{} 
+\hreflink{https://doi.org/} % If needed use \linebreak
+%\doinum{}
+
+%=================================================================
+% Add packages and commands here. The following packages are loaded in our class file: fontenc, inputenc, calc, indentfirst, fancyhdr, graphicx, epstopdf, lastpage, ifthen, lineno, float, amsmath, setspace, enumitem, mathpazo, booktabs, titlesec, etoolbox, tabto, xcolor, soul, multirow, microtype, tikz, totcount, changepage, attrib, upgreek, cleveref, amsthm, hyphenat, natbib, hyperref, footmisc, url, geometry, newfloat, caption
+
+\graphicspath{{figures/}} % path to folder with figures
+\usepackage{subcaption}
+\usepackage{listings}
+
+\captionsetup[lstlisting]{position=top, margin=0cm,labelfont={bf, small, stretch=1.17}, labelsep=period, textfont={small, stretch=1.17}, aboveskip=6pt, singlelinecheck=off, justification=justified}
+
+\usepackage{xcolor}
+\usepackage{gensymb} % for \textdegree
+\usepackage{tabularx}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{RGB}{204, 0, 153}
+%    
+\lstdefinestyle{mystyle}{ 
+    numberstyle=\tiny\color{codegray},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=t,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+%=================================================================
+% Full title of the paper (Capitalized)
+\Title{Quantitative Morphometric 3D Terrain Analysis of Japan Using Scripts of GMT and R}
+
+% MDPI internal command: Title for citation in the left column
+\TitleCitation{Quantitative Morphometric 3D Terrain Analysis of Japan Using Scripts of GMT and R}
+
+% Author Orchid ID: enter ID or remove command
+\newcommand{\orcidauthorA}{0000-0002-5759-1089} % Polina Add \orcidA{} behind the author's name
+\newcommand{\orcidauthorB}{0000-0002-6461-1551} % Olivier Add \orcidB{} behind the author's name
+
+% Authors, for the paper (add full first names)
+\Author{Polina Lemenkova %MDPI: Please carefully check the accuracy of names and affiliations. % Authors: yes, correct.
+ $^{1,}$*\orcidA{} and Olivier Debeir $^{1}$\orcidB{}}%MDPI: There is no aff 2 in affiliations part. Please add. % Authors: both authors are from the same affiliation. There is only one affiliation, the same for the two persons.
+
+%\longauthorlist{yes}
+
+% MDPI internal command: Authors, for metadata in PDF
+\AuthorNames{Polina Lemenkova and Olivier Debeir}
+
+% MDPI internal command: Authors, for citation in the left column
+\AuthorCitation{Lemenkova, P.; Debeir, O.}
+% If this is a Chicago style journal: Lastname, Firstname, Firstname Lastname, and Firstname Lastname.
+
+% Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
+\address{%
+$^{1}$ \quad Laboratory of Image Synthesis and Analysis (LISA), École Polytechnique de Bruxelles (Brussels Faculty of Engineering), Université Libre de Bruxelles (ULB), Building L, Campus du Solbosch, ULB---LISA CP165/57, Avenue F. D. Roosevelt 50, 1050 Brussels, Belgium. Emails: polina.lemenkova@ulb.be; olivier.debeir@ulb.be}
+%$^{2}$ \quad olivier.debeir@ulb.be}%MDPI: Please add. % Authors: we are from the same affiliation, we have only one affiliation, so I deleted the 2nd.
+
+% Contact information of the corresponding author
+\corres{Correspondence: polina.lemenkova@ulb.be; Tel.: +32-471-86-04-59}
+
+% Current address and/or shared authorship
+%\firstnote{Current address: Affiliation 3.} 
+
+% Abstract (Do not insert blank lines, i.e. \\) 
+\abstract{In this paper, we describe two related scripting methods of cartographic data processing and visualization that provide 2D and 3D mapping of Japan with different algorithm complexity. The first algorithm utilizes Generic Mapping Toolset (GMT), which is known as an advanced console-based program for spatial data processing. The modules of GMT combine the functionality of scripting with the aspects of geoinformatics, which is especially effective for the rapid analysis of large geospatial datasets, multi-format data processing, and mapping in 2D and 3D modes. The second algorithm presents the use of the R programming language for cartographic visualization and spatial analysis. This R method utilizes the packages ‘tmap’, ‘raster’, ‘maps’, and ‘mapdata’ to model the morphometric elements of the Japanese archipelago, such as slope, aspect, hillshade and elevation. The general purpose graphical package ‘ggplot2’ of R was used for mapping the prefectures of Japan. The two scripting approaches demonstrated an established correspondence between the programming languages and cartography determined with the use of scripts for data processing. They outperform several well-known and state-of-the-art GIS methods for mapping due to their high automation of data processing. Cartography has largely reflected recent advances in data science, the rapid development of scripting languages, and transfer in the approaches of data processing. This extends to the shift from the traditional GIS to programming languages. As a response to these new challenges, we demonstrated in this paper the advantages of using scripts in mapping, which consist of repeatability and the flexible applicability of scripts in similar works.}
+
+% Keywords
+\keyword{terrain modelling; script; geoscience; R language; generic mapping tools; computer science; data visualization; 3D modelling; cartography} 
+
+% The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
+\PACS{91.10.Da; 95.75.Rs; 95.75.-z; 92.70.Iv; 92.70.Pq; 93.30.-w; 93.30.Db; 92.40.Pb}
+\MSC{97Pxx; 97P40; 97P50; 97M50; 97P10; 91D20; 68P05; 92F05}
+\JEL{C60; C61; Q50; Q51; Q55; Q56}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\section{Introduction}
+
+Cartographic visualization is an important component of many Earth science applications. In numeric land modelling, the discriminative power of 2D and 3D mapping is a key factor in the topographic analysis of land features since it provides the most direct and quickest way to evaluate geospatial information. During the last four decades, a variety of Geographic Information Systems (GIS) have been developed, with commercial ArcGIS software certainly being the most widely used. Land surface modelling in GIS shows that qualitative data analysis, cartographic visualization and the interpretation of the topographic features visualized on maps {activate} the evaluation of spatial heterogeneity and the variability of the objects and environmental processes on the Earth. 
+
+The performance of various GIS is, in many cases, tailored to their specific tasks, among which vector and raster spatial data processing is arguably the most prominent and important functionality of these software. For instance, some are better suited for image processing, such as Erdas Imagine \cite{IWAHASHI2010202}, Idrisi GIS \cite{land10040379,AYALEW200515}, Integrated Land and Water Information System (ILWIS) GIS \cite{BABIKER2005127}, and ENvironment for Visualizing Images (ENVI) GIS, while others are best at vector data analysis and visualization, e.g., ArcGIS \cite{OHTA2022108201,IKEMI2017115,IWAHASHI201229,NAKAYAMA2023110243,HANAOKA2014274}.
+Most of these GIS are based on a standard interface with a restricted functionality that requires the manual processing of data, although recently machine learning techniques have been applied to spatial data modelling~\cite{THONGTHAMMACHART2022105447} and image analysis \cite{ALIFU2020107365,CARRASCO2022277}. However, while these methods drive the geospatial analysis to gather explicit information on the terrain structure and morphometric variations, the core question emerges as the cartographic approach underlying the computational complexity of geoinformation processing. This raises the multi-disciplinary goal of succeeding in improving the cartographic workflow over the performance of the conventional algorithms. For instance, the use of scripts, besides the pre-defined algorithms in GIS, can result in an enlarged cartographic workflow functionality for data being modelled. 
+
+GIS-based mapping is a tedious and time-consuming process for cartographic performance as it may involve a large number of separated tasks and operations that are normally made using different commands in the menu toolbar. For this reason, the workflow is split into various steps of data processing. Better still, however, is using the full functionality of the programming and machine learning, applications of scripting languages for plugins, and auxiliary tools that ensure data processing using scripts \cite{NAGHIBI2021101232}. Spatial analysis can benefit from the automation of cartographic processes because scripting enables the repeatability of the process. The advanced modelling enables the performance of a more comprehensive analysis of various factors affecting land surfaces and processes. 
+
+On the other hand, the importance of machine learning for topographic and geomorphological mapping is well known since it is less error-prone and time-consuming compared to the traditional state-of-the-art GIS. At the very least, this can be a use for scripting for data visualization, such as in Generic Mapping Tools (GMT) \cite{FARAG2022229297,data7060074}. Despite certain difficulties in mastering the program, such as its high learning curve, console-based non-visual operation mode, and complex steps of fine-tuning map elements, GMT nevertheless provides a much more powerful functionality of cartographic workflow and increased flexibility in data processing. Furthermore, it yields deep insights into how to process geospatial information in relation to the individual traits of datasets, including the transformation of coordinate systems and georeferencing, extracting attributes and labelling, processing binary formats for gridded datasets, modelling elevation data for morphometric analysis, reading interleaved data formats in one script, and many more.
+
+In this paper, we extend this idea of using scripts to the morphometric mapping of Japan by incorporating several libraries of R and modules of GMT for cartographic data processing. We propose a scripting framework that, by facilitating the mapping process using powerful methods of programming, can plot 2D and 3D maps more effectively than standard techniques of GIS. We devise a systemic way to use and process geoinformation derived from raster grids for visualising morphometric elements and parameters of terrain and use them to develop a series of scripts that could be extended to other regions to improve cartographic performance in 2D and 3D modelling.
+
+The accurate visualization of complex terrain models can lead to the increased precision and efficacy of maps. Cartographic layout is usually seen as the final stage of spatial analysis summarising and presenting the results in a graphical form. That said, scripting by R land GMT largely facilitates visualization since similar parts of scripts may be reused. The contribution of the paper is twofold. First, we demonstrated that script-based visualization offers the increased precision of the morphological analysis through automation of data processing. Second, a marked improvement in the development of cartographic methods is observed, since using R and GMT in a mapping workflow paved the way for the machine learning methods in geospatial data analysis.
+
+\subsection{Background and Motivation}
+Topography is an important characteristic of the land surface, which is reflected in the landscape and associated with numerous environmental factors. Specifically, the geomorphic and topographic features control and affect vegetation coverage \cite{land10060559,GOMEZ201511}, habitats and landforms \cite{land7030102,land10101031}, hydrology, soil distribution, and local micro-climate settings that are dependent on the topographic exposure, slope steepness, and curvature of the relief. Spatial characteristics that can be retrieved from the topographic and land surface maps have many applications, such as environmental management  \cite{land6040083}, flood monitoring \cite{HOOKE2020106793}, hydrological and fluvial modelling in riverine ecosystems \cite{SIAKEU2004231,NAKAYAMA201362}, analysis of coastal processes \cite{ITO2022102527}, soil management practices, and analysis of crop yields \cite{TABUCHI20174,PRIYA2001113,SASAI2012175}. Moreover, land surface maps present a background for the analysis of the correlation between the geomorphology and geology \cite{MATSUURA20141} and geophysical and geographic factors and processes \cite{IMAIZUMI2018125}.  %MDPI: Please check to ensure your original meaning has been retained.
+
+Topographic mapping based on the digital elevation model (DEM) is considered one of the most important issues of cartography and is often used as background information for spatial analysis in the geosciences. An inherent research step in the computations of a terrain analysis based on DEM is the use of modelling methods where GIS is traditionally applied. A variety of existing GIS software can be used for the spatial data visualization and topographic analysis considered a background for both socio-geographic and physical-geographic mapping. Since the onset of the development of GIS, technical methods of cartographic visualization and approaches to terrain analysis have been constantly improved.
+
+One of the key components in GIS software and cartographic data processing is map projection. Mapping lands evokes a distortion in their angle, area, and shape depending on the type of map projection, which may be of the conic, azimuthal, cylindrical or miscellaneous types~\cite{Ghaderpour}. As a result, minor distortions arise when transforming the coordinates into various types of projections. {Therefore}, various projections can be better adjusted to map specific study {areas} depending on their locations and spatial extent. 
+
+For instance, the Albers conic equal-area projection is mostly used to plot areas with large longitudinal extents, e.g., Canada and USA. The polyconic projections have true scales on the parallels represented as non-concentric circular arcs. This makes this projection class neither equal-area nor conformal with the least distortion on the parallels having their centres along a central meridian. Likewise, the Lambert conic conformal projection is suitable for regions with a W-E extent with a true scale on the two standard parallels. The equidistant conic projection keeps a balance between the conformal and equal-area types with minimised distortion over the study area and a true scale along all the meridians and standard parallels. 
+
+Large regions with a global extent are better mapped using the Lambert azimuthal equal-area or stereographic equal angle projections, while northern regions, such as Scandinavian areas, can be effectively plotted using the polar stereographic projection, where map boundaries are represented by lines of constant longitude and latitude. In this study, we used the cylindrical Mercator projection for plotting a topographic map that is conformal in type with an inserted small global map in a perspective projection.
+
+\subsection{Related Work}
+
+Various publications focused on Japan were published that, in particular, aimed to understand how the geomorphology of the Japanese Alps is linked to the geologic and surface structures \cite{MATSUOKA201965}, rock glacial processes and distribution of vegetation \cite{FUJINO2023100146}, or reflected in the adjacent bathymetry \cite{Kariya2002}. Multivariate methods of spatial analysis extract local or regional terrain features from spatial data using coordinates that locate them. Thus, a variety of analytic techniques involves methods of quantitative analysis for detecting and describing spatiotemporal information for a deeper understanding of land surface processes. These can be used as the advanced tools enabling the performance of a terrain analysis on the highly heterogeneous morphological setting of Japan, as reflected in relevant works \cite{Oguchi2000,OGUCHI2020106805,MATSUURA2015133,NIWA2021107835,HATTANJI2021107943}. 
+
+By choosing a proper GIS, data handling can yield a large number of extended features. However, providing a standardised solution for selecting a proper GIS is a challenge since, in most cases, it has a similar functionality of both raster and vector data analysis. Nevertheless, whichever GIS is chosen, it requires active work in an interface menu with the manipulation of input data and modelling to present a cartographic visualization. Another point is the issue of open source availability, which has restricted access for commercial GIS. The increasing variety of GIS necessitates that alternative tools with more flexible and varied approaches to cartographic visualization and geospatial modelling should be explored. Scripting approaches can provide a substitute functional tool for cartographic visualization and geospatial modelling. Examples of scripting toolsets in cartography include the Geographic Resources Analysis Support System (GRASS) GIS \cite{Lemenkova202016,Lemenkova202026} and GMT used in topographic and geomorphic mapping \cite{ijgi11090473,geosciences12030140}. 
+
+\subsection{Contribution}
+
+This paper presents an application of the GMT cartographic scripting toolset \cite{Wesseletal2019} and the R language \cite{RCoreTeam} for the spatial analysis and terrain mapping of Japan. We demonstrate the main advantages of both methods, which consist of their straightforward and logical language syntax, a scripting approach, and open-source access. We use the powerful functionality of several GMT modules for the fine-tuning of the cartographic visualization, as well as R packages to process both tabular and geospatial data directly from a console. We considered the existing cases of using R libraries for geospatial data processing and visualisation. For instance, special packages for geographic data processing include gstat \cite{HENGL20081886}, RStoolbox \cite{app122412554}, terra, and raster \cite{jimaging8120317}.
+
+This study makes a technical contribution to the development of cartographic methods by adapting the R language for mapping instead of the traditional GIS. We combined the GMT scripting toolset and R language for spatial data visualization and morphometric analysis in a cartographic framework, which included following general steps: (1) processing the data of the General Bathymetric Chart of the Oceans (GEBCO), Earth Topography Global Relief Model (ETOPO1) and ETOPO2 by GMT for 2D and 3D mapping by scripts; (2) the importing of Shuttle Radar Topography Mission (SRTM90) DEM by R; (3) visualising a DEM using the `raster' package; (4) computing the topographic surface parameters of slope, aspect, and hillshade using R scripts; and (5) cartographic visualization by the `tmap' package of R with additional cartographic elements (legend, histogram, grid, ticks, annotations, compass directions, and a bar scale). %MDPI: There are two (2). Please modify. % Authors: corrected.
+
+The structure of this document is as follows. First, we discuss the key issues relevant to the morphometric modelling based on DEM in a cartographic analysis of the geospatial data. Specifically, slope, aspect, hillshade and elevation are reviewed as essential elements of the terrain analysis. Second, we present a case of the Japanese archipelago as an example for mapping and briefly outline the major geographic features and morphology of the Japanese Alps. Third, we point out that our combination framework can be easily extended to other regions with heterogeneous terrain morphology with minor modifications of the scripts. To this end, we provide technical notes on scripts, followed by a methodological description of the performed morphometric analysis using R and GMT. The full scripts are listed in the Appendix and in the Supplementary Materials as a technical cartographic reference for similar studies. Furthermore, the methodological part demonstrates several screenshots of the performed scripting process in the RStudio environment, where maps of slope, aspect, hillshade and elevation are plotted, and the GMT for 2D and 3D modelling. 
+
+The results present the computed and visualized maps of the Japanese archipelago made by a GMT scripting toolset and in RStudio. The latter ones include the morphometric elements (slope, aspect, hillshade, and elevation) with statistical elements of data distribution as histograms and a map of prefectures of Japan visualized by the ‘ggplot2’ graphical package of R. A discussion of the machine-based approach to cartographic modelling and visualization follows the Results section. Finally, we provide conclusions regarding the advantages of using GMT and R in cartography compared to the state-of-the-art GIS techniques based on a standard graphical user's interface and ways of modelling geospatial data by scripting languages from the console. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Materials and Methods}
+The key methods included the GMT with diverse modules and packages of Rm, including ‘tmap’ for thematic mapping and ‘ggplot2’, ‘ggmap’ \cite{KahleWickham}, ‘maps’ and ‘mapdata’ for the data capture and thematic regional mapping of prefectures of Japan. The package ‘mapdata’ contains the base location of the binary files of prefectures boundaries of Japan used by the map drawing functions. The ‘raster’ package was used for morphometric analysis, which also included the depending packages, such as ‘sp’, a package which operates with classes and methods for spatial data, and ‘sf’, a package operating with ‘Simple Features’ as object classes in an R syntax. 
+
+\subsection{Study Region}
+
+The study region is Japan, shown in Figure \ref{fig01}. 
+
+\begin{figure}[H]
+	\includegraphics[width=13.7 cm]{Fig-01}
+\caption{Topographic map of Japan. Data source: GEBCO. Software: GMT, version 6.1.1. Cartography source: authors. \label{fig01}}
+\end{figure}   
+
+The geology of Japan is characterised by an early stage of mountain range formation comprising young and active island arcs \cite{SUEOKA2022229231}. As a result of complex tectonic movements, uplift, and denudation processes, the Japanese Alps consist of a mountain range cut by river and glacial valleys, running through the main island of Honshu. During the Quaternary period, the major axis of the Japan Alps experienced more than 2000 m of uplift, which, together with the denudation processes, resulted in the exposure of the Takidani Granodiorite. The regions is divided into three major parts: the Northern, Central, and Southern Alps. The northern region located in the Nagano, Toyama and Gifu prefectures includes the Hida Mountains with high seismicity along one of major Quaternary faults, the Atotsugawa fault, with repetitive earthquakes \cite{ENESCU2005147}. 
+
+The geologic structure of the Hida terrane shows a complex geologic structure with gneisses formed from Permo-Carboniferous clastic sediments during a single metamorphism at ca. 250 Ma \cite{TSUJIMORI2006167}. The Northern Japanese Alps are characterised by  lateral and terminal moraines and outwash terraces of glacial origin. The Central Alps include the Kiso Mountains located in the Nagano prefecture \cite{SUEOKA2016197} and are characterised by a granite structure. The highest peak of the Japanese Alps is recorded in Mt. Kita (3193 m) in the Southern Alps, or Akaishi Mountains.
+
+The Japanese Alps had long been exploited, and their geologic structure, geomorphologic setting \cite{KARIYA2011156}, and tectonic evolution \cite{Sato} have been reconstructed. In addition to the environmental value and strong effects on the climate and vegetation setting of Japan, the Japanese Alps contribute to the economy of the country, being a source of natural mineral resources such as timber and minerals, as well as habitat for diverse species and vegetation, including medical herbs. Moreover, rice paddy fields are cultivated on the slopes of the mountains. Finally, the Alps are considered a potential source of geothermal energy \cite{TSUCHIYA2017193}. All these factors make the Japanese Alps a key land surface object for nature and the society of~Japan.
+
+\subsection{Datasets Preprocessing}
+
+The geospatial data processing was performed in RStudio environment, Figure \ref{fig02}.
+
+\begin{figure}[H]
+	\includegraphics[width=13.8 cm]{Fig-02.jpg}
+\caption{Geodata processing in RStudio environment. (\textbf{Left}): (1) loading packages, (2) obtaining data, (3) inspecting data.frame. (\textbf{Right}): (1) setting up coordinate system, (2) calculating terrain characteristics (slope, aspect, hillshade) by ‘raster’ package, (3) visualizing maps on a screen in RStudio. Source:~authors. \label{fig02}}
+\end{figure}   
+
+The workflow included the following general scheme: (1) loading packages, (2) obtaining data, (3) inspecting data.frame, (4) setting up the coordinate system, (5) calculating terrain characteristics (slope, aspect, hillshade) by the ‘raster’ package, (6) visualizing maps on a screen in RStudio, (7) plotting cartographic aesthetics in the ‘tmap’ package, and (8) mapping the prefectures of Japan in the ‘ggplot2’ package. The data for the terrain analysis include digital elevation models (DEM) from the Shuttle Radar Topography Mission (SRTM). The SRTM is widely used in research \cite{RABUS2003241} due to its acceptable resolution (30 m $\times$ 30 m) and open-source availability: the National Aeronautics and Space Administration (NASA) Shuttle Radar Topography Mission (SRTM) provided DEMs for over 80\% of the land surface on the Earth. The slope, aspect, hillshade and elevation maps were plotted using the RStudio environment~\cite{RStudio} using the ‘raster’ package as implemented by \cite{Hijmans}. Specifically, the following workflow was used for data pre-processing. The data were captured using the ‘getData()’ function of the ‘raster’ package of R from the available geospatial datasets of the University of California, Davis campus, CA, U.S. 
+
+The data were then reprojected to the Lambert conformal conic projection (LCC) by the following function: $crs(alt) <- "+proj=lcc +lat\_1=-30 +lat\_2=40 +lon\_0=140 +datum=WGS84".$ The coordinate system is an important aspect of geographic data which is implemented in the R environment by a PROJ library \cite{EversKnudsen}. It should be specially mentioned that the SRTM shows elevation data not as a bare-earth model but as a surface, which includes dense canopy forests and built-up areas in the estimation of the terrain. Although such nuances might be worrying in hydrological modelling, the SRTM is generally acceptable for country-level mapping, as in our case for mapping Japan using SRTM DEM.
+
+\subsection{Methods}
+
+\subsubsection{3D Modelling by GMT Scripts}
+Scripting by Generic Mapping Tools (GMT) followed the existing cartographic experience \cite{su142315966} with the use of a 3D package for the terrain modelling of Japan, as seen in Figure \ref{fig03}. 
+
+\begin{figure}[H]
+	\includegraphics[width=12.0 cm]{Fig-03.jpg}
+\caption{A 3D model of the land surface of Japan. Plotting is performed with rotation of 165/30\textdegree based on Earth topography one minute (ETOPO1) grid representing global relief. Software: GMT, version 6.1.1. Map source: authors. \label{fig03}}
+\end{figure} 
+
+It should be noted that 3D modelling is an important approach to data processing, with many applications in engineering and natural sciences \cite{8569534,9492117,KosukeWatanabe2019,rs8110967}. Most 3D modelling approaches in mapping address the problem of the visualization of the land surface in the forms of multiple views of the terrain by 3D data acquisition, e.g., light detection and ranging (LiDAR)~\cite{KASAI200957,KONDO2008731}. The high cost of special hardware for obtaining LiDAR data and substantial manual processing reduce the operational flexibility of such approaches and limit their availability as practical applications for topographic mapping . 
+
+In this part, we present 3D terrain modelling based on the GMT open soft toolset. Such approach makes 3D mapping a more practical routine and enables many applications in Earth science with advanced cartographic data visualization of the terrain. Here, the 3D shapes of the terrain are presented in perspective projections for data interpolated by splines with heights obtained from the 3D coordinates of the raster grids of the ETOPO1 and ETOPO2 datasets. The differences in the local ruggedness of the terrain as represented by ETOPO1 and ETOPO2 are visualised and compared in 3D perspective plots with a rotated azimuth view. The algorithms included the `grdview' module of GMT, as shown in scripts in the Appendix %MDPI: Newly changed information, please confirm. % Authors: yes, we confirm.
+ \ref{app1} and in the Supplementary Materials. 
+
+\subsubsection{Mapping the Prefectures of Japan}
+
+To illustrate the location of various prefectures of Japan, we used the "ggplot2" packages of R for plotting the regions of prefectures using arguments in the dataset for visualization. The data were captured by the ‘maps’ package of R \cite{Beckeretal2013} and ‘mapdata’, which provide the map databases, including the data on Japan: its prefectures, areas, etc. The advantage of this approach consists of the integrated use of ‘mapdata’ with the ‘ggplot2’ package of R. The `ggplot2' package is a common graphical package designed for general purpose scientific visualization; however, it is applicable for cartographic purposes as well. Here, the main elements, i.e., the polygons of the prefectures in Japan, were plotted using the $‘geom\_polygon’$ function, which operates with data frames containing the coordinates of polygons and values associated with each of them: 
+\begin{verbatim}geom_polygon(data=japan, aes(x=long, y=lat, fill=region, group=group)\end{verbatim} 
+
+The annotations of the axes were added using the ‘xlab’ and ‘ylab’ functions. The color scales were defined in the RColorBrewer and extended from the default, fixed number of colors to the number of prefectures in Japan, which was inspected by the ‘length’ function, as follows: 
+\begin{verbatim}
+	length(unique(japan$region))
+\end{verbatim} 
+
+Afterwards, the number %MDPI: Please check indent is necessary. % Authors: yes, correct, the indent is done to highlight the code snippets.
+ of colors in the color palette was defined using the ‘colourCount’ function: 
+ \begin{verbatim}
+	colourCount = length(unique(japan$region))
+\end{verbatim}
+
+Following that, the color palette was expanded to the required number (47 prefectures of Japan) by the use of the ‘colorRampPalette’ function, as follows: 
+\begin{verbatim}
+	colorRampPalette(brewer.pal(name="Spectral", n = 8))(47).
+\end{verbatim}  
+
+Now, when the color palette was adjusted to the dataset, the map of prefectures of Japan was colored by assigning each individual color to each of the 47 prefectures, as follows: % Authors: the same: the indent is done to highlight the code snippets.
+\begin{verbatim}
+	scale_fill_manual(values = getPalette(colourCount)).
+\end{verbatim} 
+% Authors: the same: the indent is done to highlight the code snippets.
+Other, additional cartographic elements included adding the titles, subtitles and captions by the ‘labs’ function, which enables the modification of the labels, annotations and captions. The rest of the aesthetics were added using $theme()$ function, as shown in Figure \ref{fig04}, which provides an illustration of the script on the left and the resulting output map on the right part of the menu. These include, among others, plotting the legend, its orientation and annotations, defining the text size and font characteristics, selecting the color of background, and choosing the types of grid ticks and the frequency of breaks on a cartographic grid. The final map is shown in Figure \ref{fig04}. 
+
+The map of the prefectures of Japan (Figure \ref{fig04}) presented the visualization of the 47 prefectures made using the ‘ggplot2’ package of R, as well as the ‘mapdata’ and ‘maps’ packages used for data capture and processing. Each prefecture was colored as single-colored polygons modified from the default palette of R (‘Spectral’) using the palette extension by the ‘colorRampPalette’ function. 
+
+\begin{figure}[H]
+	\includegraphics[width=13.6 cm]{Fig-04.jpg}
+\caption{Mapping the prefectures of Japan. (\textbf{a}) Script used for mapping by ‘ggplot2’, ‘ggmap’, ‘maps’ and ‘mapdata’ packages. (\textbf{b}) Map of the prefectures of Japan. Source: authors. \label{fig04}}%There is no (a,b) in the image. Please add. % Authors: corrected.
+\end{figure}   
+
+\subsubsection{Mapping Morphological Features}
+Modeling slope, aspect, and hillshade is a technique for visualising terrain determined by DEM as a numerical data source. Here, the slope and the aspect were plotted first as major features. Following that, we visualised the hillshade, which is a derivative from the slope and an aspect of the elevation. The parameters of hillshade were adjusted and visually changed using various illuminating positions of the light source as degrees of simulated sun angle rotation. The four derivatives of the SRTM90 DEM grid were modelled and visualized using R as follows: slope, aspect, hillshade, and elevation. 
+
+The slope gradient, aspect and hillshade were defined by the algorithm of the ‘raster’ package of R at any point of the input raster grid (SRTM90) using local neighbourhood analysis. These variables are automatically defined by the machine using values of altitude (elevation) and its derivatives at or around each cell point on a raster grid representing the land surface. The ‘alt’ has a formal class `RasterLayer' of package ‘raster’ with 12 slots.
+
+\paragraph{Slope}
+The terrain characteristics of slope were calculated and modelled using the ‘raster’ package of R using the following sequence of commands. First, the color palette of R was created for visualization: $cols <- rainbow(255)$. Second, the slope and aspect were computed by following: $slope = terrain(alt, opt = ``slope")$. Third, the slope was visualised: $plot(slope, col=cols, main= `Slope’, xlab = ``lon", ylab = ``lat")$. Here, ‘alt’ represents the abbreviation of ‘altitude’.
+
+\paragraph{Aspect}
+The aspect was modelled using the function ‘terrain’ with the option ‘aspect’ as follows: $aspect = terrain(alt, opt = ``aspect")$, followed by the definition of colors: $cols <- terrain.colors(255)$. Afterwards, using the same function $plot()$ as for the slope modeling, the map of the aspect was plotted using the following snippet of code: $plot(aspect, col=cols, main = `Exposure’, xlab = ``lon", ylab = ``lat")$. The full script of R is provided in the Appendix and in the Supplementary Materials.
+ 
+ \paragraph{Hillshade} 
+The topographic hillshade represents a remarkable phenomenon in cartography that occurs when shadow caused by the elevation cue three-dimensional shape perception. Various techniques exist to produce a monochrome 3D view of a terrain relief with the relative position of the artificial illumination representing the shadows from the natural sun. The effects from this shading are well reflected in a highly rugged terrain such as Japan, where high-elevation land surface uses strong luminance contrast, while low heights use low contrast. In attempts to visualise reliefs using the shading effects of a monochrome palette, efforts have been made since the onset of the GIS development and are considered in this work. The computation of hillshade was carried out using the following algorithm: $hill = hillShade(slope, aspect, angle = 40, direction = 270)$. The color palette was applied using the code snippet: $cols <- topo.colors(255)$. Plotting the map was carried out using the plot function as described above.
+ 
+ \paragraph{Cartographic processing}
+Mapping the morphological parameters in the ‘tmap’ package \cite{JSSv084i06} included the processing of the computed raster layers by a specifically designed cartographic package where more elements could be added to the layout and more control over their aesthetics was available. The package used a function $tmap\_style$, where the general style of the layout was defined. Then, $tm\_shape$ was used to control the main data: the name of the raster, title, and subtitle. The $tm\_raster$ function was applied to process the color scale of the numeric variables (values of slopes in degrees), labels, and other cartographic details in the legend; see Figure \ref{fig05}. 
+
+\begin{figure}[H]
+	\includegraphics[width=13.8 cm]{Fig-05.jpg}
+\caption{(\textbf{a}) Visualized plots of slope exposure. (\textbf{b}): Elevation of the terrain of Japan by ‘raster’ package of R. Source: authors. \label{fig05}}
+\end{figure}   
+
+The $tm\_scale\_bar$ and $tm\_compass$ functions show the parameters of the annotations of the auxiliary elements on the map. Thus, the $tm\_layout$ function controls the variety of the cartographic aesthetics necessary for proper visualization, such as the fonts and ticks or color of panel labels. The elements of the map affect the perception of the cartographic layout, which is crucial for overall visual appreciation by the reader. Therefore, map elements were adjusted using relevant functions of the package. The final map was visualized in an RStudio environment by calling the raster for inspection (here, ‘map1’) and saved using the $tmap\_save$ function: $tmap\_save(map1, ``Slope\_Japan.jpg", height = 7)$. The same procedure was repeated with all the other three files (slope, aspect, and hillshade). The script visualized in RStudio is presented in Figures where the left parts demonstrate the script and the right part shows the output maps.
+
+\section{Results}
+
+The results of the geospatial modelling of Japan are structured into the 2D and 3D plots made using GMT, the regional mapping of prefectures performed by R, and morphological mapping (slope, aspect, and hillshade sections). Various R packages were used in the workflow, as described above and presented in the Appendices and in the Supplementary Materials. The slope gradient, being a derivative of the altitude, presents a scale-dependent variable which changes according to the reduced or increased DEM resolution. Since the input data of this research are a 30*m SRTM DEM, the results of the slope modelling refer to the given resolution. 
+
+
+
+Marked physiographic variations in the Japanese Alps control the type and distribution of morphometric parameters in the following two regards. First, the heights change between the Hokkaido, Kyushu and Honshu Islands, with the highest elevation points in the central part of the Honshu (Mt. Fuji). Therefore, the variation of topographic ruggedness and slope steepness is primarily controlled by the geographic location, with the largest difference between the extreme highest and lowest points in the Central Alps. Second, the largest earthquake recorded in Japan, the Tohoku earthquake recorded ca. 371 km NE of Tokyo in 2011 (Miyagi prefecture, see the map in Figure \ref{fig04}), affected the topography of the country and increased slope instability and the risk of landslides.
+
+The comparison of the exposure (Figure \ref{fig05}, left) and elevation maps (Figure \ref{fig05}, right) shows the trends in the North-South-West-East directions with regard to the topographic altitude of the land surface. The functional options related to the visualization by RStudio are discussed in previous sections. The presented maps are based on the ETOPO1 and ETOPO2 data with 1 and 2 arc second resolution, respectively, used for 3D modelling by GMT, as shown on the surface plot of the land relief of Japan with varied rotation. The 3D mesh model with isolines drawn on top of the surface is based on ETOPO2, and the grey-shaded topographic `waterfall' plot based on the ETOPO2 grid with a view rotation of 115/30\textdegree as shown in Figure \ref{fig06}.
+\begin{figure}[H]
+	\includegraphics[width=14cm]{Fig-06.jpg}
+\caption{Japan: 3D topographic mesh model with isolines drawn on top of surface based on ETOPO2, with rotation of 115/30\textdegree. Software: GMT, version 6.1.1. Map source: authors. \label{fig06}}%Some numbers are overlapping. Please modify. % Authors: corrected. The 3D map in Figure 6 is replotted: we decreased the font size and increased the step of annotations to 4000 m. 
+\end{figure}   
+A 3D map with a view rotation of 65/30\textdegree is presented in Figure \ref{fig07}. The SRTM90 DEM, which shows the morphometric models, represents the slope, aspect, and hillshade relief in the land surface of Japan. The number of pixels (over 16,000 on a raster grid) was the greatest in the ‘gentle’ slope level (yellow color) compared to the others: 12,000 pixels for the ‘moderate’ slope (orange color), over 10,000 for the ‘strong’ slope (light red color), and 8000 for the ‘very strong’ slope (magenta color); three bins are covered by the class ‘extreme’ slope (purple color), and the rest (blue color) are represented by the less than 3000 pixels group, that is, the steepest mountain slopes. 
+
+\begin{figure}[H]
+	\includegraphics[width=13.8 cm]{Fig-07.jpg}
+\caption{\hl{Japan: 3D grayshaded topographic waterfall} plot based on ETOPO2 with rotation of 65/30\textdegree . Software: GMT, version 6.1.1. Map source: authors. \label{fig07}}%Some numbers are overlapping. Please modify
+\end{figure}  
+
+
+The slope map shows the steepness of the mountain sides in the Japanese Alps in the Northern, Central and Southern Alps. The highs and hills in the raster grids are visualised in different sub-regions of Japan. The slope directions (Figure \ref{fig08}) revealed the following variations in the data: ‘gentle’, ‘moderate’, ‘strong’, ‘very strong’, ‘extreme’, and ‘steep’ slopes of the mountainous regions of Japan. 
+\begin{figure}[H]
+	\includegraphics[width=13.8 cm]{Fig-08.jpg}
+\caption{Slope steepness in Japan. (\textbf{a}) Script for plotting by ‘raster ’ and ‘tmap’ packages. (\textbf{b}) Map in RStudio. Source: authors. \label{fig08}}
+\end{figure}   %There is no (a,b) in the image. Please add. % Authors: corrected.
+
+The aspect map (Figure \ref{fig09}) demonstrates that slope orientation, according to the compass direction (W-E-S-N), differs in various parts of the mountains chains of the Japanese Alps. 
+
+\begin{figure}[H]
+	\includegraphics[width=13.8 cm]{Fig-09.jpg}
+\caption{Aspect exposure of slopes in Japan. (\textbf{a}) Script by ‘raster ’ and ‘tmap’ packages. (\textbf{b}) Map prepared in RStudio. Source: authors. \label{fig09}}%There is no (a,b) in the image. Please add. % Authors: corrected.
+\end{figure}   
+
+Thus, in the central part of the area (around 36\textdegree~N), many slopes have a primarily west orientation (as shown by a red color), which is correlated to the geographic distribution of the Central Alps. However, in other parts, the southern (yellow color) and eastern (orange color) orientations demonstrate the prevailing values. Similarly, the northern orientation (green color) of the slopes contributes the least in the examined dataset. 
+
+Furthermore, the relationship of the slope aspect and elevation values indicating the altitude of the mountains might be the points of correlation. This should be emphasised since the impact of the geomorphic patterns on the morphometric characteristics helps detect the trends, showing the relief in the Japanese Alps. The hillshade map (Figure \ref{fig10}) shows a complex model based on the previously created maps of slope and aspect. 
+ 
+\begin{figure}[H]
+	\includegraphics[width=13.0 cm]{Fig-10.jpg}
+\caption{Terrain hillshade in Japan. (\textbf{a}) Script used for plotting using ‘raster ’ and ‘tmap’ packages of R. (\textbf{b}) Map in RStudio. Source: authors. \label{fig10}}%There is no (a,b) in the image. Please add. % Authors: corrected.
+\end{figure}   
+
+The levels of illumination were set at angle = 40\textdegree and azimuthal direction = 270\textdegree. The elevation map was used as a basis for the relief overlaid by the hill shading. The results of the regional mapping of prefectures performed by R are shown in Figure \ref{fig11}.
+		
+\begin{figure}[H]
+\centering
+	\includegraphics[width=11.0 cm]{Fig-11}
+\caption{Japan: map of prefectures. R, v. 4.2.2 (RStudio v. 2022.12.0+353). Map source: authors. \label{fig11}}
+\end{figure} 
+\section{Discussion}
+
+The results of the SRTM90 DEM modelling identified major morphometric characteristics, such as slope, aspect and hillshade and demonstrated the uneven elevation in the topographic maps made using R scripting. Using a variety of R packages implies both the processing of data, exploration of data frames, manipulation of its structure and spatial data analysis (e.g., using the `raster' package), and the cartographic aesthetic visualization of the layouts supported by specially designed packages such as `tmap', `maps' and `mapdata'.
+
+The analysis of topographic attributes and DEM is of fundamental importance for reconstructing the genesis and development of landforms and, more generally, the geological setting of a specific area. The new ways of measuring, sensing, and analysing relief morphology carried out in Japan suggest that the range of the relief is reinforced by the high-elevation landforms, as well as external factors such as geomorphological processes and the climate, which contribute to eroding and modifying them. In fact, a strong correlation between geomorphology, topography and climate is commonly known, as also reported in Japan \cite{Aoyama2005}. As proof of this, they pointed out that the climatic changes since the Late Glacial period have been responsible for the passage from the glacial to the permafrost environment in the current alpine zone, leading to modifications in the geomorphological processes and in the relief of the northern Japanese Alps. 
+ 
+Other important findings in geomorphic studies in Japan are well summarized by \cite{OGUCHI20013}, who noted extensive sedimentation in mountain piedmonts and coastal fluvial plains and abundant sediment in steep watersheds. They furthermore pointed out the occurrence of hydro-geomorphological events in the areas of earthquakes and volcanic eruptions, as well as the post-glacial development of hillslope and flood processes along alluvial fans strongly controlled by the climate. In addition to the environmental factors, the relief directly influences the social-economic patterns through the possibility of road and building constructions and the potential triggering of landslides, which depend on the rock properties and slope steepness. 
+
+The geomorphic processes are largely driven by the gravity of the Earth and controlled by the slope steepness of the relief. As a result, the intensity of the surface processes, such as landslides, is affected by the displacement gradients connected to the geometric curvature and ruggedness of the relief. In such a way, practical applications of land surface maps in 2D and 3D representations enable the evaluation of the slope steepness quantitatively. In turn, the information retrieved from the calculated rates at which landslides are dismantling mountain slopes can be used for hazard and risk assessment for practical purposes of engineering geology, as well as for estimating potential slope instability \cite{FUJISAWA2010150}. Furthermore, other applications of land surface maps include the evaluation of environmental risks caused by climatic factors, such as precipitation intensity and the repeatability of rainfall or downpours~\cite{Tsunetaka,Oku} and visualising water surface dynamics in the context of flood and drought applications \cite{rs14102475}. Finally, risk assessment and management in mountainous regions should consider other natural events, such as earthquakes or typhoons \cite{Yamada,Wangetal2010,HIRATA2019105217}. 
+
+
+Due to the importance of topographic data visualization and the need for updated maps based on high-resolution data, there are many research reports on methods of topographic and bathymetric mapping and DEM applications for geospatial mapping. The latter includes, for instance, land surface classification based on DEM, reliefs, and geomorphological modelling using various GIS and geomorphometric computations of slope and aspect, as well as issues concerning the visualising methods of hillshade and DEM \cite{PRIMA2006373,LIN2004159,HAYAKAWA200690}. Since morphometric studies should always be supported by a spatial topographic representation, the questions of technical tools of mapping always remain actual for DEM-based studies. Our research contributed to this topic and showed that the integrated use of GMT and R in morphometric studies is an effective approach both for thematic mapping and for spatial~analysis. 
+
+Graphics and maps, when created well, can provide eye-catching and detailed information on the land surface. This is why graphical approaches and methodologies of cartographic visualization are of high importance in Earth sciences. Despite a specific language syntax and approaches to data analysis that require mastering the tool, the GMT scripting toolset and R language are shown to be very promising tools for geospatial visualization, morphological modelling, and mapping, supporting the research in various aspects due to their different functionality. 
+
+Cartographic data visualization, regardless of what GIS software is used, is an integral part of the complex workflow of geospatial research. To mention some steps in a simplified process of geospatial data analysis using cartographic tasks, this includes data capture, preprocessing, projecting, analysis of content of the datasets, modelling variables, visualising and plotting the maps with controlled layout, and others. Applying the methods of scripts extended to the machine learning approaches to a cartographic workflow facilitates the process of spatial analysis. Specifically, it helps to increase the accuracy and precision of the final results and maps and significantly decreases the time of data processing due to the automation of geospatial data processing. Moreover, we {have} shown that the use of scripts and programming methods are more efficient and therefore more suitable for cartographic workflow due to repeatability. Our methods could be easily extended to also use other datasets and geographic extent of data. In fact, the computational procedure adopted here to investigate the setting of reliefs and mapping land features in 2D or 3D models could be applied to any target scales, be it global downscaled modelling or upscaling to regional (prefecture-level) and local (city-level)  terrain models. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions}
+
+In this paper, we have designed adaptive script-based algorithms for plotting morphologic maps using GMT and R that are able to visualise maps accurately and effectively. {Our two algorithms provide a tradeoff between the computational approach of R for geospatial data processing and the cartographic performance of GMT. For future relevant works, we suggest that one chooses the appropriate algorithm based on their mapping goals and available dataset. Both programs have free access as open-source tools and extensive functionality for geographic data analysis and visualization.} The presented methods can be used and adopted to other regions and areas with changed relevant coordinates and modified attributes for 3D modelling (e.g., elevation range). We {have} shown that the use of both these tools for mapping is a very effective approach for spatial analysis that can be used instead of or besides GIS, as a complimentary script-based method. 
+
+We furthermore identified the existing challenges such as the need to use, install, and load a variety of packages in R to fit in various tasks{, such as}: geomorphometry, classic mapping, spatial analysis, data capture, {and} data conversion{. }In contrast, GMT enables us to perform all the steps of a cartographic workflow in the same session by calling necessary modules. On the one hand, using scripts can be an easier approach  compared to GIS, but on the other hand, it can be a challenge, since it requires finding a suitable package, installing and activating it, and using it by applying its specific functions and syntax using GMT or R. 
+
+The integration of our method based on the GMT and R algorithms for processing various geospatial data is straightforward since many data formats can smoothly be imported and processed both by GMT and R. Furthermore, R has certain embedded datasets that we used for plotting the prefectures of Japan and for visualising physical features of relief. Working on grey-level images for 3D modelling by GMT enabled us to detail the land surface features and demonstrated the high accuracy of the ETOPO grids. With respect to our work, which exploited script-based mapping, we have designed and presented a series of thematic maps on Japan that can be applied for other regions and countries. 
+
+As we {have }shown in this study, the use of GMT and R for 2D and 3D mapping in geographic analysis is highly effective and recommended, especially for perspective visualization of the terrain. However, we should also notice that this method is not yet as popular as traditional GIS. This can be explained by the non-trivial approach of using scripts and programming techniques in mapping and cartographic data processing, as well as certain skills required for coding and mastering the syntax of both the tools. Nevertheless, the improved workflow of mapping and results suggests that both GMT and R are effective for geosciences and{ }recommended for mapping purposes.
+
+\vspace{6pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\supplementary{The following are available online at \linksupplementary{s1}, Figure S1: title, Table S1: title, Video S1: title.}%MDPI: Please add. we noticed the supplementary file is duplicate as appendix. Please modify. % Authors: yes, the supplementary file includes the same scripts as in Appendix. To avoid duplication, the the supplementary file can be deleted while the Appendix remained. For convenience of the reader, it is better to have a reference with scripts directly in the Appendix. 
+
+\authorcontributions{Supervision, conceptualization, methodology, software, resources, funding acquisition, and project administration, O.D.; writing---original draft preparation, methodology, software, data curation, visualization, formal analysis, validation, writing---review and editing, and investigation, P.L. All authors have read and agreed to the published version of the manuscript.}
+
+\funding{The publication was funded by the Editorial Office of Land, Multidisciplinary Digital Publishing Institute (MDPI) with the publication fee waived for this manuscript. This project was supported by the Federal Public Planning Service Science Policy or Belgian Science Policy Office, Federal Science Policy---BELSPO (B2/202/P2/SEISMOSTORM).}
+
+\institutionalreview{Not applicable.}
+
+\informedconsent{Not applicable.}
+
+\dataavailability{Not applicable} 
+
+\acknowledgments{The authors thank the anonymous reviewers of Land for reading, suggestions and comments that improved an earlier version of this manuscript.}
+
+\conflictsofinterest{The authors declare no conflict of interest.} 
+
+\abbreviations{Abbreviations}{
+The following abbreviations are used in this manuscript:\\
+
+\noindent 
+\begin{tabular}{@{}ll}
+DEM & Digital Elevation Model \\
+ENVI GIS & ENvironment for Visualizing Images \\
+ETOPO & Earth Topography Global Relief Model  \\
+GEBCO & General Bathymetric Chart of the Oceans \\
+GIS & Geographic Information System \\
+GMT & Generic Mapping Tools \\
+ILWIS GIS & Integrated Land and Water Information System GIS \\
+LCC & Lambert Conformal Conic \\
+LiDAR & Light Detection and Ranging \\
+NASA & National Aeronautics and Space Administration \\
+SRTM & Shuttle Radar Topography Mission \\
+WGS & World Geodetic System
+\end{tabular}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Optional
+\appendixtitles{yes} % Leave argument "no" if all appendix headings stay EMPTY (then no dot is printed after "Appendix A"). If the appendix sections contain a heading then change the argument to "yes".
+\appendixstart
+\appendix
+\section[\appendixname~\thesection]{GMT Scripts}
+\label{app1}
+\subsection[\appendixname~\thesubsection]{GMT Script for 2D Mapping of Japan}
+\renewcommand{\thelstlisting}{A\arabic{lstlisting}}%MDPI: Please confirm if the bold is unnecessary and can be removed. The following highlights are the same. % Authors: the bold is removed in all  cases.
+\begin{lstlisting}[language=bash,caption=GMT script for topographic map.]
+#!/bin/sh
+# Purpose: shaded relief raster map of Japan using GEBCO 15 arc sec
+# GMT modules: gmtset, gmtdefaults, grdcut, makecpt, grdimage, psscale, grdcontour, psbasemap, gmtlogo, psconvert
+# Extract a subset of GEBCO for the Japan trench area
+gmt grdcut GEBCO_2019.nc -R128/150/30/46 -Gjp_relief.nc
+gmt grdcut ETOPO1_Ice_g_gmt4.grd -R128/150/30/46 -Gjp_relief1.nc
+gmt grdgdal -Ainfo jp_relief.nc
+# actual_range={-9759.701171875,3700.7421875}
+exec bash
+# Make color palette
+gmt makecpt -Cglobe.cpt -V -T-9759/3700 > myocean.cpt
+# Generate a file
+ps=Topo_JP.ps
+# Make raster image
+gmt grdimage jp_relief.nc -Cmyocean.cpt -R128/150/30/46 -JM16c -P -I+a15+ne0.75 -Xc -K > $ps
+# Add color legend
+gmt psscale -Dg125.0/30+w15.0c/0.4c+v+o0.3/0i+ml -R -J -Cmyocean.cpt \
+	--FONT_LABEL=10p,0,black --FONT_ANNOT_PRIMARY=8p,0,black \
+	-Bg2000f100a1000+l"Topographic color scale `globe'" \
+	-I0.2 -By+lm -O -K >> $ps	
+# Add isolines
+gmt grdcontour jp_relief1.nc -R -J -C2000 -W0.1p -O -K >> $ps
+# Add coastlines, borders, rivers
+gmt pscoast -R -J -Ia/thinner,blue -Na -N1/thin,red -W0.1p -Df -O -K >> $ps
+# Add grid
+gmt psbasemap -R -J --MAP_FRAME_AXES=wESN --FORMAT_GEO_MAP=ddd:mm:ssF \
+    --FONT_TITLE=14p,0,black --MAP_TITLE_OFFSET=0.8c \
+    -Bpxg8f2a4 -Bpyg6f3a3 -Bsxg4 -Bsyg3 \
+    -B+t"Topographic map of Japan" -O -K >> $ps 
+# Add projection scale
+gmt psbasemap -R -J --FONT=10p,0,dimgray --MAP_TITLE_OFFSET=0.3c \
+    -Lx14c/-0.5i+c50+w500k+l"Mercator projection. Scale (km)"+f \
+    -UBL/-5p/-40p -O -K >> $ps    
+# Add directional rose
+gmt psbasemap -R -J \
+    --FONT=9p,Palatino-Roman,white --MAP_TITLE_OFFSET=0.3c \
+    -Tdx14.6c/9.3c+w0.3i+f2+l+o0.15i -O -K >> $ps 
+# Texts
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,white+jLB >> $ps << EOF
+133 41 S E A  O F  J A P A N
+144.05 37.5 P A C I F I C  O C E A N
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@70 >> $ps << EOF
+142 43.4 HOKKAIDO
+130 32.5 KYUSHU
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,black+jLB+a-320 -Gwhite@70 >> $ps << EOF
+137.9 35.7 H O N S H U
+EOF
+# -R128/150/30/46
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+139.53 35.0 Yokohama
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+139.63 35.44 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
+135.50 34.25 Osaka
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+135.50 34.69 0.20c
+EOF
+# repeated with relevant coordinates for all the cities
+gmt pstext -R -J -N -O -K \
+-F+f15p,0,black+jLB -Gwhite@70 >> $ps << EOF
+139.79 35.66 Tokyo
+EOF
+gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
+139.69 35.69 0.30c
+EOF
+# insert global map
+gmt psbasemap -R -J -O -K -DjBR+w3.2c+stmp >> $ps
+read x0 y0 w h < tmp
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thinnest,lightgray --MAP_FRAME_PEN=thin,white -Rg -JG140/37N/$w -Da -Gseashell3 -A2000 -Bga -Wfaint -EJP+gyellow -Sroyalblue3 -O -K -X$x0 -Y$y0 >> $ps
+gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
+# Add GMT logo
+gmt logo -Dx6.7/-1.8+o0.1i/0.1i+w2c -O -K >> $ps
+# Add subtitle
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y8.2c -N -O \
+    -F+f10p,0,black+jLB >> $ps << EOF
+3.0 11.0 GEBCO DEM Global Relief Model 15 arc sec resolution grid
+EOF
+# Convert to image file using GhostScript
+gmt psconvert Topo_JP.ps -A0.2c -E720 -Tj -Z
+\end{lstlisting}
+
+\subsection[\appendixname~\thesubsection]{GMT Script for 3D Mapping of Surface Plot of Japan}
+\begin{lstlisting}[language=bash,caption=GMT script for 3D surface plot of Japan.]
+#!/bin/sh
+# Purpose: 3D surface grid plot, 165/30 azimuth, from ETOPO1 for Japan
+# GMT modules: grdcut, grd2cpt, grdcontour, pscoast, grdview, logo, psconvert
+# Cut grid
+gmt grdcut ETOPO1_Ice_g_gmt4.grd -R128/150/30/46 -Gjp_relief1.nc
+gdalinfo -stats jp_relief1.nc
+# Minimum=-9651.000, Maximum=3481.000, Mean=-2429.672, StdDev=2497.488
+gmt makecpt -Cturbo.cpt -V -T-9651/3481 > myocean.cpt
+# generate a file
+ps=JP_3D.ps
+# -B1/1NESW
+gmt grdcontour jp_relief1.nc -JM10c -R128/150/30/46 \
+    -p165/30 -C500 --FONT_ANNOT_PRIMARY=8p,0,blue --MAP_FRAME_AXES=WESN \
+    --MAP_FRAME_PEN=brown --FORMAT_GEO_MAP=ddd:mm:ss \
+    --MAP_GRID_PEN_PRIMARY=thin,dimgray \
+    -Gd3c -Y3c -Bpxg4f2.0a2.0 -Bpyg4f2a2.0 -Bsxg1 -Bsyg1 \
+    -U/-0.5c/-1c/"Contour: ETOPO 1 arc minute resolution grid" -P -K > $ps
+#Add coastlines, borders, rivers
+gmt pscoast -R -J -p165/30 -P -Ia/thinner,blue \
+    -Na -N1/thin,gray -W0.1p -Df -O -K >> $ps
+#-Bpxg2f0.5a1 -Bpyg2f0.5a1 -Bsxg2 -Bsyg1
+# add color legend
+gmt psscale -Dg122.0/30.0+w8.0c/0.4c+v+o0.0/0.5c+ml \
+    -R -J -Cmyocean.cpt \
+    --FONT_LABEL=8p,0,dimgray --FONT_ANNOT_PRIMARY=7p,0,black --MAP_ANNOT_OFFSET=0.1c \
+    -Bg500f100a1000+l"Color scale legend: depth and height elevations (m)." \
+    -I0.2 -By+lm -O -K >> $ps
+# Add 3D
+gmt grdview jp_relief1.nc -J -R -JZ3.0c -Cmyocean.cpt \
+    -p165/30 -Qs -N-9651+glightgray \
+    -Wm0.07p -Wf0.1p,red \
+    -B2.0/2.0/3000:"Bathymetry and topography (m)":ESwZ -S5 -Y5.0c \
+    --FORMAT_GEO_MAP=ddd:mm:ss --FONT_LABEL=8p,0,darkblue --FONT_ANNOT_PRIMARY=8p,0,black \
+    --MAP_FRAME_PEN=black -O -K >> $ps
+# Add GMT logo
+gmt logo -Dx10.5/-5.5+o0.0c/-0.5c+w2c -O -K >> $ps
+# Add title
+gmt pstext -R0/10/0/10 -Jx1 -X-0.8c -Y0.0c -N -O -K \
+-F+f12p,25,black+jLB >> $ps << EOF
+-0.5 9.0 Japan: 3D topographic surface plot based on ETOPO1
+EOF
+gmt pstext -R0/10/0/10 -Jx1 -X0.0c -Y0.0c -N -O\
+    -F+f10p,0,black+jLB >> $ps << EOF
+-0.5 8.5 Perspective view, azimuth rotation: 165/30\232
+-0.5 8.0 Base map: 2D relief contour plot
+EOF
+# Convert to image file using GhostScript (portrait orientation, 720 dpi)
+gmt psconvert JP_3D.ps -A1.2c -E720 -Tj -P -Z
+\end{lstlisting}
+
+\subsection[\appendixname~\thesubsection]{Modified GMT Script for 3D Mesh Model of Japan (Lines 29--34 of the Previous Script)}
+\begin{lstlisting}[language=bash,caption=GMT script for 3D mesh model of Japan.]
+#!/bin/sh
+# Add 3D
+gmt grdview jp_relief2.nc -J -R -JZ3.0c -Cmyocean.cpt \
+    -p115/30 -Qsm -N-9651+glightgray \
+    -Wm0.07p -Wf0.1p,red \
+    -B2.0/2.0/3000:"Bathymetry and topography (m)":ESwZ -S5 -Y5.0c \
+    --FORMAT_GEO_MAP=ddd:mm:ss \
+    --FONT_LABEL=8p,0,darkblue \
+    --FONT_ANNOT_PRIMARY=8p,0,black \
+    --MAP_FRAME_PEN=black -O -K >> $ps
+ \end{lstlisting}
+ 
+ \subsection[\appendixname~\thesubsection]{GMT Script for 3D Grayscale `Waterfall' Model of Japan}
+\begin{lstlisting}[language=bash,caption=GMT script for 3D grayscale `waterfall' model of Japan.]
+#!/bin/sh
+# Purpose: 3D grayscale `waterfall' model of Japan, 65/30 azimuth, from ETOPO2 for Japan
+# GMT modules: grdcut, grd2cpt, grdcontour, pscoast, grdview, logo, psconvert
+exec bash
+# Cut grid
+gmt grdcut ETOPO2v2g_f4.nc -R128/150/30/46 -Gjp_relief2.nc
+gdalinfo -stats jp_relief2.nc
+# actual_range={-9787,2832}
+# Add 3D
+ps=JP_3D_wf.ps
+# -B1/1NESW
+gmt grdcontour jp_relief2.nc -JM10c -R128/150/30/46 \
+    -p65/30 -C500 --FONT_ANNOT_PRIMARY=8p,0,blue --MAP_FRAME_AXES=WESN \
+    --MAP_FRAME_PEN=brown --FORMAT_GEO_MAP=ddd:mm:ss \
+    --MAP_GRID_PEN_PRIMARY=thin,dimgray \
+    -Gd3c -Y3c -Bpxg4f2.0a2.0 -Bpyg4f2a2.0 -Bsxg1 -Bsyg1 \
+    -U/-0.5c/-1c/"Contour: ETOPO 2 arc minute resolution grid" -P -K > $ps 
+#Add coastlines, borders, rivers
+gmt pscoast -R -J -p65/30 -P -Ia/thinner,blue \
+    -Na -N1/thin,gray -W0.1p -Df -O -K >> $ps
+# Add 3D
+gmt grdview jp_relief2.nc -J -R -JZ2.0c -Cmyocean.cpt \
+    -p65/30 -Qmx -N-9787+glightgray -Wm0.07p -Wf0.5p,red \
+    -B2.0/2.0/4000:"Bathymetry and topography (m)":ESwZ -S5 -Y3.0c \
+    --FORMAT_GEO_MAP=ddd:mm:ss --FONT_LABEL=8p,0,darkblue \
+    --FONT_ANNOT_PRIMARY=8p,0,black --MAP_FRAME_PEN=black -O -K >> $ps
+# Add GMT logo
+gmt logo -Dx10.5/-3.5+o0.0c/-0.5c+w2c -O -K >> $ps
+# Add title
+gmt pstext -R0/10/0/10 -Jx1 -X-0.8c -Y0.0c -N -O -K \
+-F+f12p,25,black+jLB >> $ps << EOF
+-0.5 8.5 Japan: 3D perspective waterfall plot based on gridded ETOPO2 data
+EOF
+gmt pstext -R0/10/0/10 -Jx1 -X0.0c -Y0.0c -N -O\
+    -F+f10p,0,black+jLB >> $ps << EOF
+-0.5 8.0 Perspective view, azimuth rotation: 65/30\232
+-0.5 7.5 Base map: 2D relief contour plot
+EOF
+# Convert to image file using GhostScript (portrait orientation, 720 dpi)
+gmt psconvert JP_3D_wf.ps -A1.2c -E720 -Tj -P -Z
+ \end{lstlisting}
+
+\subsection[\appendixname~\thesubsection]{R Script for Plotting Prefectures of Japan}
+\begin{lstlisting}[language=R, caption=R script for plotting prefectures of Japan.]
+setwd("/Users/pauline/")
+# load packages 
+library(showtext)
+library(ggplot2)
+library(ggmap)
+library(maps)
+library(mapdata)
+# get and inspect the data
+japan <- map_data("japan")
+# Compactly display the internal structure of an R object
+str(japan)
+# indicate column with regions as factor value (variable)
+japan$region =as.factor(japan$region)
+str(japan)
+dim(japan)
+head(japan)
+tail(japan)
+# check up available fonts
+library(showtext)
+font_families()
+font_paths()
+font_files()
+# regions Japan, expanding color palettes(1)
+# inspect number of variable (prefectures of Japan)
+length(unique(japan$region))
+# 47
+#expanding color palettes(1)
+colourCount = length(unique(japan$region))
+colorRampPalette(brewer.pal(name="Spectral", n = 8))(47)
+getPalette = colorRampPalette(brewer.pal(9, "Spectral"))
+# plotting map
+gg1 <- ggplot() +
+    geom_polygon(data = japan, aes(x = long, y=lat, fill = region, group = group),
+        color = "blue", linetype = 1, size = 0.2 ) +
+    coord_fixed(1.3) +
+    xlab("Longitude") +
+    ylab("Latitude") +
+    scale_fill_manual(values = getPalette(colourCount)) +
+    labs(title="Japan",
+        subtitle = "Mapping: R",
+        caption = "Packages: ggmap, ggplot2, mapdata, maps") +
+    theme(legend.title = element_text(colour="blue", size=16, face="bold"),
+        plot.title = element_text(family = "Chalkboard", colour="blue", size=16, face="bold"),
+        plot.subtitle = element_text(family = "Chalkboard", colour="blue", face = "plain", size = 14),
+        plot.caption = element_text(face = "italic", size = 10),
+        legend.box = "vertical",
+        legend.box.background = element_rect(colour = "honeydew4",size=0.2),
+        legend.background = element_rect(fill = "white"),
+        panel.grid.major = element_line("white", size = 0.3, linetype = "solid"),
+        panel.grid.minor = element_line("white", size = 0.2, linetype = "dotted"),
+        axis.text.x = element_text(family = "Arial", face = 3, color = "gray24",size = 10, angle = 15),
+        axis.text.y = element_text(family = "Arial", face = 3, color = "gray24",size = 10, angle = 90),
+        ) +
+    scale_x_continuous(breaks = c(seq(120, 150, by = 5))) +
+    guides(fill = guide_legend(ncol = 2,
+        title = "Prefectures", title.position = "top"))
+gg1
+# regions Japan, expanding color palettes (2nd variant)
+length(unique(japan$region))
+# 47
+nb.cols <- 47
+mycolors <- colorRampPalette(brewer.pal(8, "Set1"))(nb.cols)
+# Create a ggplot with 47 colors
+# Use scale_fill_manual
+gg1 <- ggplot() +
+    geom_polygon(data = japan, aes(x = long, y=lat, fill = region, group=group),
+        color = "blue", linetype = 1, size = 0.2 ) +
+    coord_fixed(1.3) +
+    xlab("Longitude") +
+    ylab("Latitude") +
+    scale_fill_manual(values = mycolors) +
+    labs(title="Japan",
+        subtitle = "Mapping: R",
+        caption = "Packages: ggmap, ggplot2, mapdata, maps") +
+    theme(legend.title = element_text(colour="blue", size=16, face="bold"),
+            plot.title = element_text(family="AquaKana", face="bold", colour="blue", size=16)) +
+    guides(fill = guide_legend(ncol = 2,
+            title = "Prefectures", title.position = "top"))
+gg1
+# Other filling, e.g., transparent 
+ggplot() +
+geom_polygon(data = japan, aes(x=long, y = lat, group = group), fill = NA, color = "red") +
+coord_fixed(1.3)
+ggplot() +
+geom_polygon(data = france, aes(x=long, y = lat, group = group), fill = NA, color = "red") +
+coord_fixed(1.3)
+# color
+gg2 <- ggplot() +
+    geom_polygon(data = japan, aes(x=long, y = lat, group = group),
+        fill = "pink", color = "blue", linetype = 1, size = 0.2) +
+    coord_fixed(1.3) +
+    xlab("Longitude") +
+    ylab("Latitude") +
+    labs(title="Japan",
+        subtitle = "Mapping: R",
+        caption = "Packages: ggmap, ggplot2, mapdata, maps")
+gg2
+\end{lstlisting}
+
+\subsection[\appendixname~\thesubsection]{R Script for Terrain Mapping of Japan}
+\begin{lstlisting}[language=bash,caption=R script for terrain maps.]
+# Set working directory
+setwd("/Users/pauline/")
+# load packages
+library(sp)
+library(raster)
+library(ncdf4)
+library(RColorBrewer)
+library(sf)
+library(tmap)
+# check up available fonts
+library(showtext)
+font_families()
+font_paths()
+font_files()
+# get the data
+alt = getData("alt", country = "Japan", path = tempdir())
+# coordinate system
+crs(alt) <- "+proj=longlat +datum=WGS84 +no_defs"
+# Default CRS arguments: +proj=longlat +datum=WGS84 +no_defs
+crs(alt) <- "+proj=lcc +lat_1=-30 +lat_2=40 +lon_0=140 +datum=WGS84"
+crs(alt)
+# -- Calculate terrain characteristics: SLOPE, ASPECT, HILLSHADE -- #
+cols <- rainbow(255)
+# Slope
+slope = terrain(alt, opt = "slope")
+cols <- bpy.colors(255)
+plot(slope, col=cols, main='Slope', xlab = "lon", ylab = "lat")
+# Aspect
+aspect = terrain(alt, opt = "aspect")
+cols <- terrain.colors(255)
+plot(aspect, col=cols, main='Exposure', xlab = "lon", ylab = "lat")
+# Hillshade
+hill = hillShade(slope, aspect, angle = 40, direction = 270)
+cols <- rev(topo.colors(255))
+cols <- topo.colors(255)
+plot(hill, col=cols, main='Hillshade', xlab = "lon", ylab = "lat")
+# Elevation
+cols <- rainbow(255)
+plot(alt, col=cols, main='Elevation', xlab = "lon", ylab = "lat")
+mymaps <- tmap_arrange(slope, alt)
+mymaps
+\end{lstlisting}
+
+\subsection[\appendixname~\thesubsection]{R Script for Mapping Slope of Japan}
+\begin{lstlisting}[language=bash,caption=R script for mapping slope map of Japan.]
+# Set working directory
+setwd("/Users/pauline/")
+# load packages
+library(sp)
+library(raster)
+library(ncdf4)
+library(RColorBrewer)
+library(sf)
+library(tmap)
+# tmaptools::palette_explorer()
+# initial mode: "plot"
+# current.mode <- tmap_mode("plot")
+# slope
+tmap_mode("plot")
+map1 <-
+    tmap_style("albatross"
+        ) +
+    tm_shape(slope, name = "Slope", title = "Slope",
+        raster.downsample = T,
+        ) +
+    tm_raster(
+        title = "Slope (0\u00B0-90\u00B0)", palette = "-plasma",
+        style = "quantile", n = 6, breaks = c(5, 15, 30, 60, 75, 90),
+        labels = c("gentle", "moderate", "strong", "very strong", "extreme", "steep"),
+        legend.show = T,legend.hist = T, legend.hist.z = 0,
+        ) +
+    tm_scale_bar(
+        width = 0.5,
+        text.size = 1.5, text.color = "darkgoldenrod1",
+        color.dark = "lightsteelblue4", color.light = "white",
+        position=c("left", "bottom"), lwd = 1,
+        ) +
+    tm_compass(
+        type = "radar", position=c("right", "bottom")
+        ) +
+    tm_layout(scale = .8,
+        main.title = "Slope: terrain analysis based on SRTM90 DEM of Italy. Mapping: R",
+        main.title.position = "center",
+        main.title.color = "black", main.title.size = 1.4,
+        title = "Data: SRTM90 DEM",
+        title.color = "darkgoldenrod1",
+        title.size = 1.2, title.position = c("left", "top"),
+        panel.labels = c("R packages: tmap, raster, sp, sf"),
+        panel.label.color = "darkslateblue",
+        panel.label.size = 1.2, legend.position = c("right","bottom"),
+        legend.bg.color = "grey90", legend.bg.alpha = .2,
+        legend.frame = "gray50", legend.outside = FALSE,
+        legend.width = 0.9, legend.height = .5,
+        legend.hist.height = 0.3, legend.title.size = 1.2,
+        legend.text.size = 0.6, legend.text.fontface = "plain",
+        legend.text.fontfamily = "Helvetica",
+        inner.margins = 0.1,
+        ) +
+    tm_graticules(
+        ticks = T, lines = T, labels.rot = c(15, 15),
+        col = "azure3", lwd = 1, labels.size = 1.2
+        )
+# plot map
+map1
+tmap_save(map1, "Slope_Japan.jpg", height = 7)
+\end{lstlisting}
+
+\subsection[\appendixname~\thesubsection]{R Script for Mapping Aspect of the Terrain in Japan}
+\begin{lstlisting}[language=bash,caption=R script for mapping aspect of the terrain in Japan.]
+# Aspect
+tmap_mode("plot")
+map2 <-
+    tmap_style("albatross"
+        ) +
+    tm_shape(aspect, name = "Aspect", title = "Aspect",
+        raster.downsample = T,
+        ) +
+    tm_raster(
+        title = "Aspect (West-East-South-North)", palette = "Spectral",
+        style = "sd", labels = c("West", "East", "South", "North"),
+        legend.show = T, legend.hist = T, legend.hist.z = 0,
+        ) +
+    tm_scale_bar(
+        width = 0.5,
+        text.size = 1.5, text.color = "darkgoldenrod1",
+        color.dark = "lightsteelblue4", color.light = "white",
+        position=c("left", "bottom"), lwd = 1,
+        ) +
+    tm_compass(
+        type = "radar", position=c("right", "bottom")
+        ) +
+    tm_layout(scale = .8,
+        main.title = "Aspect: terrain analysis based on SRTM90 DEM of Italy. Mapping: R",
+        main.title.position = "center",
+        main.title.color = "black", main.title.size = 1.4,
+        title = "Data: SRTM90 DEM. Aspect (W-E-S-N)",
+        title.color = "darkgoldenrod1",
+        title.size = 1.2, title.position = c("left", "top"),
+        panel.labels = c("R packages: tmap, raster, sp, sf"),
+        panel.label.color = "darkslateblue",
+        panel.label.size = 1.2, legend.position = c("left","top"),
+        legend.bg.color = "grey90", legend.bg.alpha = .2,
+        legend.frame = "gray50", legend.outside = FALSE,
+        legend.width = .3, legend.height = .5,
+        legend.hist.height = .3, legend.title.size = 1.2,
+        legend.text.size = 1.2, legend.text.fontface = "plain",
+        legend.text.fontfamily = "Helvetica",
+        inner.margins = 0,
+        ) +
+    tm_graticules(
+        ticks = T, lines = T, labels.rot = c(15, 15),
+        col = "azure3", lwd = 1, labels.size = 1.2
+        )
+# plot the map
+map2
+tmap_save(map2, "Aspect_Japan.jpg", height = 7)
+\end{lstlisting}
+
+\subsection[\appendixname~\thesubsection]{R Script for Mapping Hillshade in the Terrain of Japan}
+\begin{lstlisting}[language=bash,caption=R script for mapping hillshade in the terrain of Japan.]
+# hillshade
+# tmaptools::palette_explorer()
+tmap_mode("plot")
+map3 <-
+    tmap_style("albatross") +
+    tm_shape(hill, name = "Hillshade", title = "Slope",
+        auto.palette.mapping = FALSE,) +
+    tm_raster(
+        title = "Histogram \n(data distribution)",
+        palette = "cividis", style = "kmeans",
+        legend.show = T, legend.hist = T,
+        legend.hist.z=0,
+        ) +
+    tm_scale_bar(
+        width = 0.25,
+        text.size = 1.2, text.color = "darkgoldenrod1",
+        color.dark = "lightsteelblue4", color.light = "white",
+        position=c("right", "bottom"), lwd = 1) +
+    tm_compass(
+        type = "radar", position=c("left", "bottom")) +
+    tm_layout(scale = .8,
+        main.title = "Hillshade: Terrain analysis based on SRTM90 DEM of Japan. Mapping: R",
+        main.title.position = "center",
+        main.title.color = "black",
+        main.title.size = 1.4, title = "Hillshade (0\u00B0-90\u00B0)",
+        title.color = "darkgoldenrod1",
+        title.size = 1.2, title.position = c("left", "top"),
+        panel.labels = c("R packages: tmap, raster, sp, sf"),
+        panel.label.color = "darkslateblue",
+        legend.position = c("left","top"), legend.bg.color = "grey90",
+        legend.bg.alpha = .2, legend.frame = "gray50",
+        legend.outside = FALSE, legend.width = .3,
+        legend.height = .5, legend.hist.height = .2,
+        legend.text.size = 1.0, legend.text.fontface = "plain",
+        legend.title.size = 1.2,
+        inner.margins = 0) +
+    tm_graticules(
+        ticks = TRUE, lines = TRUE,
+        col = "azure3", lwd = 1,
+        labels.size = 1.0,
+        labels.col = "black")
+# plot the map
+map3
+tmap_save(map3, "Japan_Hillshade.jpg", height = 7)
+\end{lstlisting}
+
+\subsection[\appendixname~\thesubsection]{R Script for Mapping Elevation Heights over Japan}
+\begin{lstlisting}[language=bash,caption=R script for mapping elevation heights over Japan.]
+# elevation
+tmap_mode("plot")
+map4 <-
+    tmap_style("white") +
+    tm_shape(alt, name = "Elevation") +
+    tm_raster(
+        palette = terrain.colors(10),
+        title = "Elevation (m asl)",
+        legend.show = TRUE) +
+    tm_scale_bar(
+        width = 0.25,
+        text.size = 0.5,
+        text.color = "black",
+        color.dark = "black",
+        color.light = "white",
+        position=c("left", "bottom"),
+        lwd = 1) +
+    tm_compass(position=c("left", "bottom")) +
+    tm_layout(scale = .8,
+        legend.position = c("left","top"),
+        legend.bg.color = "grey90",
+        legend.bg.alpha = .2,
+        legend.frame = "gray50")
+# plot the map
+map4
+tmap_save(map4, "Japan_Elevation.jpg", height = 7)
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{adjustwidth}{-\extralength}{0cm}
+%\printendnotes[custom] % Un-comment to print a list of endnotes
+
+\reftitle{References}
+
+%=====================================
+% References, variant A: external bibliography
+%=====================================
+\begin{thebibliography}{999}
+
+\bibitem[Iwahashi \em{et~al.}(2010)Iwahashi, Kamiya, and
+  Matsuoka]{IWAHASHI2010202}
+Iwahashi, J.; Kamiya, I.; Matsuoka, M.
+\newblock Regression analysis of Vs30 using topographic attributes from a 50-m
+  DEM.
+\newblock {\em Geomorphology} {\bf 2010}, {\em 117},~202--205.
+\newblock {{https://doi.org/10.1016/j.geomorph.2009.11.004}}.
+
+\bibitem[Shoyama(2021)]{land10040379}
+Shoyama, K.
+\newblock Assessment of Land-Use Scenarios at a National Scale Using Intensity
+  Analysis and Figure of Merit Components.
+\newblock {\em Land} {\bf 2021}, {\em 10}, 379.
+\newblock {{https://doi.org/10.3390/land10040379}}.
+
+\bibitem[Ayalew and Yamagishi(2005)]{AYALEW200515}
+Ayalew, L.; Yamagishi, H.
+\newblock The application of GIS-based logistic regression for landslide
+  susceptibility mapping in the Kakuda-Yahiko Mountains, Central Japan.
+\newblock {\em Geomorphology} {\bf 2005}, {\em 65},~15--31.
+\newblock {{https://doi.org/10.1016/j.geomorph.2004.06.010}}.
+
+\bibitem[Babiker \em{et~al.}(2005)Babiker, Mohamed, Hiyama, and
+  Kato]{BABIKER2005127}
+Babiker, I.S.; Mohamed, M.A.; Hiyama, T.; Kato, K.
+\newblock A GIS-based DRASTIC model for assessing aquifer vulnerability in
+  Kakamigahara Heights, Gifu Prefecture, central Japan.
+\newblock {\em Sci. Total Environ.} {\bf 2005}, {\em
+  345},~127--140.
+\newblock {{https://doi.org/10.1016/j.scitotenv.2004.11.005}}.
+
+\bibitem[Ohta \em{et~al.}(2022)Ohta, Matsushi, and Matsuzaki]{OHTA2022108201}
+Ohta, R.; Matsushi, Y.; Matsuzaki, H.
+\newblock Use of terrestrial cosmogenic 10Be to quantify anthropogenic sediment
+  yield from mountainous watersheds: Application in reconstructing
+  environmental change in the Tanakami Mountains, central Japan.
+\newblock {\em Geomorphology} {\bf 2022}, {\em 405},~108201.
+\newblock {{https://doi.org/10.1016/j.geomorph.2022.108201}}.
+
+\bibitem[Ikemi(2017)]{IKEMI2017115}
+Ikemi, H.
+\newblock Geologically constrained changes to landforms caused by human
+  activities in the 20th century: A case study from Fukuoka Prefecture, Japan.
+\newblock {\em Appl. Geogr.} {\bf 2017}, {\em 87},~115--126.
+\newblock {{https://doi.org/10.1016/j.apgeog.2017.08.001}}.
+
+\bibitem[Iwahashi \em{et~al.}(2012)Iwahashi, Kamiya, and
+  Yamagishi]{IWAHASHI201229}
+Iwahashi, J.; Kamiya, I.; Yamagishi, H.
+\newblock High-resolution DEMs in the study of rainfall- and earthquake-induced
+  landslides: Use of a variable window size method in digital terrain analysis.
+\newblock {\em Geomorphology} {\bf 2012}, {\em 153--154},~29--38.\linebreak
+\newblock {{https://doi.org/10.1016/j.geomorph.2012.02.002}}.
+
+\bibitem[Nakayama and Osako(2023)]{NAKAYAMA2023110243}
+Nakayama, T.; Osako, M.
+\newblock Development of a process-based eco-hydrology model for evaluating the
+  spatio-temporal dynamics of macro- and micro-plastics for the whole of Japan.
+\newblock {\em Ecol. Model.} {\bf 2023}, {\em 476},~110243.
+\newblock {{https://doi.org/10.1016/j.ecolmodel.2022.110243}}.
+
+\bibitem[Hanaoka \em{et~al.}(2014)Hanaoka, Nakaya, Yano, and
+  Inoue]{HANAOKA2014274}
+Hanaoka, K.; Nakaya, T.; Yano, K.; Inoue, S.
+\newblock Network-based spatial interpolation of commuting trajectories:
+  application of a university commuting management project in Kyoto, Japan.
+\newblock {\em J. Transp. Geogr.} {\bf 2014}, {\em 34},~274--281.\linebreak
+\newblock {{https://doi.org/10.1016/j.jtrangeo.2013.09.006}}.
+
+\bibitem[Thongthammachart \em{et~al.}(2022)Thongthammachart, Araki, Shimadera,
+  Matsuo, and Kondo]{THONGTHAMMACHART2022105447}
+Thongthammachart, T.; Araki, S.; Shimadera, H.; Matsuo, T.; Kondo, A.
+\newblock Incorporating Light Gradient Boosting Machine to land use regression
+  model for estimating NO2 and PM2.5 levels in Kansai region, Japan.
+\newblock {\em Environ. Model. Softw.} {\bf 2022}, {\em
+  155},~105447.
+\newblock {{https://doi.org/10.1016/j.envsoft.2022.105447}}.
+
+\bibitem[Alifu \em{et~al.}(2020)Alifu, Vuillaume, Johnson, and
+  Hirabayashi]{ALIFU2020107365}
+Alifu, H.; Vuillaume, J.F.; Johnson, B.A.; Hirabayashi, Y.
+\newblock Machine-learning classification of debris-covered glaciers using a
+  combination of Sentinel-1/-2 (SAR/optical), Landsat 8 (thermal) and digital
+  elevation data.
+\newblock {\em Geomorphology} {\bf 2020}, {\em 369},~107365.
+\newblock {{https://doi.org/10.1016/j.geomorph.2020.107365}}.
+
+\bibitem[Carrasco \em{et~al.}(2022)Carrasco, Fujita, Kito, and
+  Miyashita]{CARRASCO2022277}
+Carrasco, L.; Fujita, G.; Kito, K.; Miyashita, T.
+\newblock Historical mapping of rice fields in Japan using phenology and
+  temporally aggregated Landsat images in Google Earth Engine.
+\newblock {\em ISPRS J. Photogramm. Remote Sens.} {\bf 2022},
+  {\em 191},~277--289.
+\newblock {{https://doi.org/10.1016/j.isprsjprs.2022.07.018}}.
+
+\bibitem[Naghibi \em{et~al.}(2021)Naghibi, Hashemi, and
+  Pradhan]{NAGHIBI2021101232}
+Naghibi, S.A.; Hashemi, H.; Pradhan, B.
+\newblock APG: A novel python-based ArcGIS toolbox to generate absence-datasets
+  for geospatial studies.
+\newblock {\em Geosci. Front.} {\bf 2021}, {\em 12},~101232.
+\newblock {{https://doi.org/10.1016/j.gsf.2021.101232}}.
+
+\bibitem[Farag \em{et~al.}(2022)Farag, Sobh, and Mizunaga]{FARAG2022229297}
+Farag, T.; Sobh, M.; Mizunaga, H.
+\newblock 3D constrained gravity inversion to model Moho geometry and stagnant
+  slabs of the Northwestern Pacific plate at the Japan Islands.
+\newblock {\em Tectonophysics} {\bf 2022}, {\em 829},~229297.
+\newblock {{https://doi.org/10.1016/j.tecto.2022.229297}}.
+
+\bibitem[Lemenkova(2022)]{data7060074}
+Lemenkova, P.
+\newblock Handling Dataset with Geophysical and Geological Variables on the
+  Bolivian Andes by the GMT Scripts.
+\newblock {\em Data} {\bf 2022}, {\em 7}, 74.
+\newblock {{https://doi.org/10.3390/data7060074}}.
+
+\bibitem[Hara \em{et~al.}(2021)Hara, Oki, Uchiyama, Ito, Tani, Naito, and
+  Sampei]{land10060559}
+Hara, Y.; Oki, S.; Uchiyama, Y.; Ito, K.; Tani, Y.; Naito, A.; Sampei, Y.
+\newblock Plant Diversity in the Dynamic Mosaic Landscape of an Agricultural
+  Heritage System: The Minabe-Tanabe Ume System.
+\newblock {\em Land} {\bf 2021}, {\em 10}, 559.
+\newblock {{https://doi.org/10.3390/land10060559}}.
+
+\bibitem[Gomez \em{et~al.}(2015)Gomez, Hayakawa, and Obanawa]{GOMEZ201511}
+Gomez, C.; Hayakawa, Y.; Obanawa, H.
+\newblock A study of Japanese landscapes using structure from motion derived
+  DSMs and DEMs based on historical aerial photographs: New opportunities for
+  vegetation monitoring and diachronic geomorphology.
+\newblock {\em Geomorphology} {\bf 2015}, {\em 242},~11--20.
+%\newblock Geomorphology in the Geocomputing Landscape: GIS, DEMs, Spatial Analysis and statistics, %MDPI: Is this necessary? Can this be deleted? % Authors: not necessary, we deleted it.
+
+ {{https://doi.org/10.1016/j.geomorph.2015.02.021}}.
+
+\bibitem[Kim \em{et~al.}(2018)Kim, Rupprecht, and Furuya]{land7030102}
+Kim, M.; Rupprecht, C.D.D.; Furuya, K.
+\newblock Residents’ Perception of Informal Green Space---A Case Study of
+  Ichikawa City, Japan.
+\newblock {\em Land} {\bf 2018}, {\em 7}, 102.
+\newblock {{https://doi.org/10.3390/land7030102}}.
+
+\bibitem[Sasaki \em{et~al.}(2021)Sasaki, Hotes, Ichinose, Doko, and
+  Wolters]{land10101031}
+Sasaki, K.; Hotes, S.; Ichinose, T.; Doko, T.; Wolters, V.
+\newblock Hotspots of Agricultural Ecosystem Services and Farmland Biodiversity
+  Overlap with Areas at Risk of Land Abandonment in Japan.
+\newblock {\em Land} {\bf 2021}, {\em 10}, 1031.
+\newblock {{https://doi.org/10.3390/land10101031}}.
+
+\bibitem[Otani \em{et~al.}(2017)Otani, Kurosaki, Kurozawa, and
+  Shinoda]{land6040083}
+Otani, S.; Kurosaki, Y.; Kurozawa, Y.; Shinoda, M.
+\newblock Dust Storms from Degraded Drylands of Asia: Dynamics and Health
+  Impacts.
+\newblock {\em Land} {\bf 2017}, {\em 6}, 83.
+\newblock {{https://doi.org/10.3390/land6040083}}.
+
+\bibitem[Hooke(2020)]{HOOKE2020106793}
+Hooke, J.M.
+\newblock Changing landscapes: Five decades of applied geomorphology.
+\newblock {\em Geomorphology} {\bf 2020}, {\em 366},~106793.
+%\newblock The Binghamton Geomorphology Symposium: 50 years of Enhancing Geomorphology, % Authors: not necessary, we deleted it.
+  {{https://doi.org/10.1016/j.geomorph.2019.06.007}}. 
+
+\bibitem[Siakeu \em{et~al.}(2004)Siakeu, Oguchi, Aoki, Esaki, and
+  Jarvie]{SIAKEU2004231}
+Siakeu, J.; Oguchi, T.; Aoki, T.; Esaki, Y.; Jarvie, H.P.
+\newblock Change in riverine suspended sediment concentration in central Japan
+  in response to late 20th century human activities.
+\newblock {\em CATENA} {\bf 2004}, {\em 55},~231--254.
+\newblock Geomorphic Impacts of Rapid Environmental Change,
+  {{https://doi.org/10.1016/S0341-8162(03)00120-6}}.
+
+\bibitem[Nakayama(2013)]{NAKAYAMA201362}
+Nakayama, T.
+\newblock For improvement in understanding eco-hydrological processes in mire.
+\newblock {\em Ecohydrol. Hydrobiol.} {\bf 2013}, {\em 13},~62--72.
+%\newblock Ecohydrology for harmonization of societal needs with the biosphere potential,  % Authors: not necessary, we deleted it.
+  {{https://doi.org/10.1016/j.ecohyd.2013.03.004}}.
+
+\bibitem[Ito \em{et~al.}(2022)Ito, Onitsuka, Kuroda, Hasegawa, Fukuda, Gouda,
+  Akino, Sonoki, Endo, Takayama, Nagase, and Shirafuji]{ITO2022102527}
+Ito, S.; Onitsuka, T.; Kuroda, H.; Hasegawa, N.; Fukuda, H.; Gouda, H.; Akino,
+  H.; Sonoki, S.; Endo, K.; Takayama, T.;  et~al.
+\newblock Evaluation of seafloor environmental characteristics of harvesting
+  ground of a kelp Saccharina longissima using GIS in the Pacific coastal area
+  of eastern Hokkaido, Japan.
+\newblock {\em Reg. Stud. Mar. Sci.} {\bf 2022}, {\em
+  55},~102527.
+\newblock {{https://doi.org/10.1016/j.rsma.2022.102527}}.
+
+\bibitem[Tabuchi \em{et~al.}(2017)Tabuchi, Murakami, Okudera, Furihata,
+  Sakakibara, Takahashi, and Yasuda]{TABUCHI20174}
+Tabuchi, K.; Murakami, T.; Okudera, S.; Furihata, S.; Sakakibara, M.;
+  Takahashi, A.; Yasuda, T.
+\newblock Predicting potential rice damage by insect pests using land use data:
+  A 3-year study for area-wide pest management.
+\newblock {\em Agric. Ecosyst. Environ.} {\bf 2017}, {\em
+  249},~4--11.
+\newblock {{https://doi.org/10.1016/j.agee.2017.08.009}}.
+
+\bibitem[Priya and Shibasaki(2001)]{PRIYA2001113}
+Priya, S.; Shibasaki, R.
+\newblock National spatial crop yield simulation using GIS-based crop
+  production model.
+\newblock {\em Ecol. Model.} {\bf 2001}, {\em 136},~113--129.
+\newblock {{https://doi.org/10.1016/S0304-3800(00)00364-1}}.
+
+\bibitem[Sasai \em{et~al.}(2012)Sasai, Nakai, Setoyama, Ono, Kato, Mano,
+  Murakami, Miyata, Saigusa, Nemani, and Nasahara]{SASAI2012175}
+Sasai, T.; Nakai, S.; Setoyama, Y.; Ono, K.; Kato, S.; Mano, M.; Murakami, K.;
+  Miyata, A.; Saigusa, N.; Nemani, R.R.;  et~al.
+\newblock Analysis of the spatial variation in the net ecosystem production of
+  rice paddy fields using the diagnostic biosphere model, BEAMS.
+\newblock {\em Ecol. Model.} {\bf 2012}, {\em 247},~175--189.
+\newblock {{https://doi.org/10.1016/j.ecolmodel.2012.08.016}}.
+
+\bibitem[Matsu'ura \em{et~al.}(2014)Matsu'ura, Kimura, Komatsubara, Goto,
+  Yanagida, Ichikawa, and Furusawa]{MATSUURA20141}
+Matsu'ura, T.; Kimura, H.; Komatsubara, J.; Goto, N.; Yanagida, M.; Ichikawa,
+  K.; Furusawa, A.
+\newblock Late Quaternary uplift rate inferred from marine terraces, Shimokita
+  Peninsula, northeastern Japan: A preliminary investigation of the buried
+  shoreline angle.
+\newblock {\em Geomorphology} {\bf 2014}, {\em 209},~1--17.
+\newblock {{https://doi.org/10.1016/j.geomorph.2013.11.013}}.
+
+\bibitem[Imaizumi \em{et~al.}(2018)Imaizumi, Nishiguchi, Matsuoka, Trappmann,
+  and Stoffel]{IMAIZUMI2018125}
+Imaizumi, F.; Nishiguchi, T.; Matsuoka, N.; Trappmann, D.; Stoffel, M.
+\newblock Interpretation of recent alpine landscape system evolution using
+  geomorphic mapping and L-band InSAR analyses.
+\newblock {\em Geomorphology} {\bf 2018}, {\em 310},~125--137.\linebreak
+\newblock {{https://doi.org/10.1016/j.geomorph.2018.03.013}}.
+
+\bibitem[Ghaderpour(2016)]{Ghaderpour}
+Ghaderpour, E.
+\newblock Some Equal-area, Conformal and Conventional Map Projections: A
+  Tutorial Review.
+\newblock {\em J. Appl. Geod.} {\bf 2016}, {\em 10},~197--209.
+\newblock {{https://doi.org/10.1515/jag-2015-0033}}.
+
+\bibitem[Matsuoka(2019)]{MATSUOKA201965}
+Matsuoka, N.
+\newblock A multi-method monitoring of timing, magnitude and origin of rockfall
+  activity in the Japanese Alps.
+\newblock {\em Geomorphology} {\bf 2019}, {\em 336},~65--76.
+\newblock {{https://doi.org/10.1016/j.geomorph.2019.03.023}}.
+
+\bibitem[Fujino \em{et~al.}(2023)Fujino, Sakakibara, Tsujimura, and
+  Suzuki]{FUJINO2023100146}
+Fujino, M.; Sakakibara, K.; Tsujimura, M.; Suzuki, K.
+\newblock Influence of alpine vegetation on water storage and discharge
+  functions in an alpine headwater of Northern Japan Alps.
+\newblock {\em J. Hydrol. X} {\bf 2023}, {\em 18},~100146.
+\newblock {{https://doi.org/10.1016/j.hydroa.2022.100146}}.
+
+\bibitem[Kariya(2002)]{Kariya2002}
+Kariya, Y.
+\newblock Geomorphic processes at a snowpatch hollow on Gassan volcano,
+  northern Japan.
+\newblock {\em Permafr. Periglac. Process.} {\bf 2002}, {\em
+  13},~107--116.
+\newblock {{https://doi.org/10.1002/ppp.412}}.
+
+\bibitem[Oguchi(2000)]{Oguchi2000}
+Oguchi, T.
+\newblock {Geomorphology and GIS in Japan: Background and characteristics}.
+\newblock {\em GeoJournal} {\bf 2000}, {\em 52},~195--202.\linebreak
+\newblock {{https://doi.org/10.1023/A:1014239305782}}.
+
+\bibitem[Oguchi(2020)]{OGUCHI2020106805}
+Oguchi, T.
+\newblock Geomorphological debates in Japan related to surface processes,
+  tectonics, climate, research principles, and international geomorphology.
+\newblock {\em Geomorphology} {\bf 2020}, {\em 366},~106805.
+%\newblock The Binghamton Geomorphology Symposium: 50 years of Enhancing Geomorphology % Authors: not necessary, we deleted it.
+ {{https://doi.org/10.1016/j.geomorph.2019.06.019}}.
+
+\bibitem[Matsu'ura(2015)]{MATSUURA2015133}
+Matsu'ura, T.
+\newblock Late Quaternary uplift rate inferred from marine terraces, Muroto
+  Peninsula, southwest Japan: Forearc deformation in an oblique subduction
+  zone.
+\newblock {\em Geomorphology} {\bf 2015}, {\em 234},~133--150.
+\newblock {{https://doi.org/10.1016/j.geomorph.2015.01.012}}.
+
+\bibitem[Niwa and Sugai(2021)]{NIWA2021107835}
+Niwa, Y.; Sugai, T.
+\newblock Millennial-scale vertical deformation of the Hachinohe coastal plain
+  (NE Japan).
+\newblock {\em Geomorphology} {\bf 2021}, {\em 389},~107835.
+\newblock {{https://doi.org/10.1016/j.geomorph.2021.107835}}.
+
+\bibitem[Hattanji \em{et~al.}(2021)Hattanji, Kodama, Takahashi, Tanaka,
+  Doshida, and Furuichi]{HATTANJI2021107943}
+Hattanji, T.; Kodama, R.; Takahashi, D.; Tanaka, Y.; Doshida, S.; Furuichi, T.
+\newblock Migration of channel heads by storm events in two granitic mountain
+  basins, western Japan: Implication for predicting location of landslides.
+\newblock {\em Geomorphology} {\bf 2021}, {\em 393},~107943.
+\newblock {{https://doi.org/10.1016/j.geomorph.2021.107943}}.
+
+\bibitem[Lemenkova(2020{\natexlab{a}})]{Lemenkova202016}
+Lemenkova, P.
+\newblock {NOAA Marine Geophysical Data and a GEBCO Grid for the Topographical
+  Analysis of Japanese Archipelago by Means of GRASS GIS and GDAL Library}.
+\newblock {\em Geomat. Environ. Eng.} {\bf 2020}, {\em
+  14},~25--45.
+\newblock {{https://doi.org/10.7494/geom.2020.14.4.25}}.
+
+\bibitem[Lemenkova(2020{\natexlab{b}})]{Lemenkova202026}
+Lemenkova, P.
+\newblock {GRASS GIS for classification of Landsat TM images by maximum
+  likelihood discriminant analysis: Tokyo area, Japan}.
+\newblock {\em Geod. Glas.} {\bf 2020}, {\em 51},~5--25.
+\newblock {{https://doi.org/10.6084/m9.figshare.13507761}}.
+
+\bibitem[Lemenkova(2022{\natexlab{a}})]{ijgi11090473}
+Lemenkova, P.
+\newblock Mapping Climate Parameters over the Territory of Botswana Using GMT
+  and Gridded Surface Data from TerraClimate.
+\newblock {\em ISPRS Int. J. -Geo-Inf.} {\bf 2022}, {\em
+  11}, 473.
+\newblock {{https://doi.org/10.3390/ijgi11090473}}.
+
+\bibitem[Lemenkova(2022{\natexlab{b}})]{geosciences12030140}
+Lemenkova, P.
+\newblock Console-Based Mapping of Mongolia Using GMT Cartographic Scripting
+  Toolset for Processing TerraClimate Data.
+\newblock {\em Geosciences} {\bf 2022}, {\em 12}, 140.
+\newblock {{https://doi.org/10.3390/geosciences12030140}}.
+
+\bibitem[Wessel \em{et~al.}(2019)Wessel, Luis, Uieda, Scharroo, Wobbe, Smith,
+  and Tian]{Wesseletal2019}
+Wessel, P.; Luis, J.F.; Uieda, L.; Scharroo, R.; Wobbe, F.; Smith, W.H.F.;
+  Tian, D.
+\newblock The Generic Mapping Tools Version 6.
+\newblock {\em Geochem. Geophys. Geosyst.} {\bf 2019}, {\em
+  20},~5556--5564.
+\newblock {{https://doi.org/10.1029/2019GC008515}}.
+
+\bibitem[{R Core Team}(2022)]{RCoreTeam}
+{R Core Team}.
+\newblock {\em R: A Language and Environment for Statistical Computing};
+\newblock R Foundation for Statistical Computing: Vienna, Austria,  2022.
+
+\bibitem[Hengl \em{et~al.}(2008)Hengl, Bajat, Blagojević, and
+  Reuter]{HENGL20081886}
+Hengl, T.; Bajat, B.; Blagojević, D.; Reuter, H.I.
+\newblock Geostatistical modeling of topography using auxiliary maps.
+\newblock {\em Comput. Geosci.} {\bf 2008}, {\em 34},~1886--1899.
+\newblock {{https://doi.org/10.1016/j.cageo.2008.01.005}}.
+
+\bibitem[Lemenkova and Debeir(2022{\natexlab{a}})]{app122412554}
+Lemenkova, P.; Debeir, O.
+\newblock R Libraries for Remote Sensing Data Classification by K-Means
+  Clustering and NDVI Computation in Congo River Basin, DRC.
+\newblock {\em Appl. Sci.} {\bf 2022}, {\em 12}, 12554.
+\newblock {{https://doi.org/10.3390/app122412554}}.
+
+\bibitem[Lemenkova and Debeir(2022{\natexlab{b}})]{jimaging8120317}
+Lemenkova, P.; Debeir, O.
+\newblock Satellite Image Processing by Python and R Using Landsat 9 OLI/TIRS
+  and SRTM DEM Data on Côte d'Ivoire, West Africa.
+\newblock {\em J. Imaging} {\bf 2022}, {\em 8}, 317.
+\newblock {{https://doi.org/10.3390/jimaging8120317}}.
+
+\bibitem[Kahle and Wickham(2013)]{KahleWickham}
+Kahle, D.; Wickham, H.
+\newblock {ggmap: Spatial Visualization with ggplot2}.
+\newblock {\em  R J.} {\bf 2013}, {\em 5},~144--161.
+
+\bibitem[Sueoka \em{et~al.}(2022)Sueoka, Kobayashi, Fukuda, Kohn, Yokoyama,
+  Sano, Hasebe, Tamura, Morishita, and Tagami]{SUEOKA2022229231}
+Sueoka, S.; Kobayashi, Y.; Fukuda, S.; Kohn, B.P.; Yokoyama, T.; Sano, N.;
+  Hasebe, N.; Tamura, A.; Morishita, T.; Tagami, T.
+\newblock Low-temperature thermochronology of active arc-arc collision zone,
+  South Fossa Magna region, central Japan.
+\newblock {\em Tectonophysics} {\bf 2022}, {\em 828},~229231.
+\newblock {{https://doi.org/10.1016/j.tecto.2022.229231}}.
+
+\bibitem[Enescu and Ito(2005)]{ENESCU2005147}
+Enescu, B.; Ito, K.
+\newblock The 1998 Hida Mountain, Central Honshu, Japan, earthquake swarm:
+  Double-difference event relocation, frequency–magnitude distribution and
+  Coulomb stress changes.
+\newblock {\em Tectonophysics} {\bf 2005}, {\em 409},~147--157.\linebreak
+\newblock {{https://doi.org/10.1016/j.tecto.2005.08.013}}.
+
+\bibitem[Tsujimori \em{et~al.}(2006)Tsujimori, Liou, Ernst, and
+  Itaya]{TSUJIMORI2006167}
+Tsujimori, T.; Liou, J.; Ernst, W.; Itaya, T.
+\newblock Triassic paragonite- and garnet-bearing epidote-amphibolite from the
+  Hida Mountains, Japan.
+\newblock {\em Gondwana Res.} {\bf 2006}, {\em 9},~167--175.
+%\newblock Tectonic Evolution of Korean Peninsula and Adjacent Crustal Fragments in Asia, % Authors: not necessary, we deleted it.
+  {{https://doi.org/10.1016/j.gr.2005.03.001}}.
+
+\bibitem[Sueoka \em{et~al.}(2016)Sueoka, Tsutsumi, and Tagami]{SUEOKA2016197}
+Sueoka, S.; Tsutsumi, H.; Tagami, T.
+\newblock New approach to resolve the amount of Quaternary uplift and
+  associated denudation of the mountain ranges in the Japanese Islands.
+\newblock {\em Geosci. Front.} {\bf 2016}, {\em 7},~197--210.
+\newblock Special Issue: Exhuming Asia,
+  {{https://doi.org/10.1016/j.gsf.2015.06.005}}.
+
+\bibitem[Kariya \em{et~al.}(2011)Kariya, Sato, and Komori]{KARIYA2011156}
+Kariya, Y.; Sato, G.; Komori, J.
+\newblock Landslide-induced terminal moraine-like landforms on the east side of
+  Mount Shiroumadake, Northern Japanese Alps.
+\newblock {\em Geomorphology} {\bf 2011}, {\em 127},~156--165.
+\newblock {{https://doi.org/10.1016/j.geomorph.2010.12.012}}.
+
+\bibitem[Sato \em{et~al.}(2002)Sato, Imaizumi, Yoshida, Ito, and
+  Hasegawa]{Sato}
+Sato, H.; Imaizumi, T.; Yoshida, T.; Ito, H.; Hasegawa, A.
+\newblock {Tectonic evolution and deep to shallow geometry of Nagamachi-Rifu
+  Active Fault System, NE Japan}.
+\newblock {\em Earth, Planets Space} {\bf 2002}, {\em 54},~1039--1043.
+\newblock {{https://doi.org/10.1186/BF03353298}}.
+
+\bibitem[Tsuchiya and Yamada(2017)]{TSUCHIYA2017193}
+Tsuchiya, N.; Yamada, R.
+\newblock Geological and Geophysical Perspective of Supercritical Geothermal
+  Energy in Subduction Zone, Northeast Japan.
+\newblock {\em Procedia Earth Planet. Sci.} {\bf 2017}, {\em
+  17},~193--196.
+\newblock 15th Water-Rock Interaction International Symposium, WRI-15,
+  {{https://doi.org/10.1016/j.proeps.2016.12.066}}.
+
+\bibitem[Rabus \em{et~al.}(2003)Rabus, Eineder, Roth, and Bamler]{RABUS2003241}
+Rabus, B.; Eineder, M.; Roth, A.; Bamler, R.
+\newblock The shuttle radar topography mission---A new class of digital
+  elevation models acquired by spaceborne radar.
+\newblock {\em ISPRS J. Photogramm. Remote Sens.} {\bf 2003},
+  {\em 57},~241--262.
+\newblock {{https://doi.org/10.1016/S0924-2716(02)00124-7}}.
+
+\bibitem[Team(2017)]{RStudio}
+RStudio Team.
+\newblock {RStudio: Integrated Development Environment for R};  
+\newblock RStudio Inc., Boston, MA, USA, 2017.  Available online: \url{https://www.RStudio.com/}  (accessed on 23 December 2022).%MDPI: Please add the access date (format: Date Month Year), e.g., accessed on 1 January 2020. % Authors: corrected.
+
+\bibitem[Hijmans(2017)]{Hijmans}
+Hijmans, R.J.
+\newblock {raster: Geographic Data Analysis and Modeling. R Package Version
+  2.6-7}.  2017.
+\newblock Available online: \url{https://CRAN.R-project.org/package=raster}  (accessed on 23 December 2022).%MDPI: Please add the access date (format: Date Month Year), e.g., accessed on 1 January 2020. % Authors: corrected.
+
+\bibitem[Evers and Knudsen(2017)]{EversKnudsen}
+Evers, K.; Knudsen, T.
+\newblock {Transformation pipelines for PROJ.4}.
+\newblock In Proceedings of the {FIG Working Week 2017, Surveying the World of
+  Tomorrow---From Digitalisation to Augmented Reality}, Helsinki, Finland,  29 May--2 June 2017; pp. 1--13.
+
+\bibitem[Lemenkova and Debeir(2022)]{su142315966}
+Lemenkova, P.; Debeir, O.
+\newblock Seismotectonics of Shallow-Focus Earthquakes in Venezuela with Links
+  to Gravity Anomalies and Geologic Heterogeneity Mapped by a GMT Scripting
+  Language.
+\newblock {\em Sustainability} {\bf 2022}, {\em 14}, 15966.
+\newblock {{https://doi.org/10.3390/su142315966}}.
+
+\bibitem[Narksri \em{et~al.}(2018)Narksri, Takeuchi, Ninomiya, Morales, Akai,
+  and Kawaguchi]{8569534}
+Narksri, P.; Takeuchi, E.; Ninomiya, Y.; Morales, Y.; Akai, N.; Kawaguchi, N.
+\newblock A Slope-robust Cascaded Ground Segmentation in 3D Point Cloud for
+  Autonomous Vehicles.
+\newblock In Proceedings of the 2018 21st International Conference on
+  Intelligent Transportation Systems (ITSC),   Maui, HI, USA, 4--7 November 2018; pp. 497--504.
+\newblock {{https://doi.org/10.1109/ITSC.2018.8569534}}.
+
+\bibitem[Matsuyama \em{et~al.}(2021)Matsuyama, Aoki, Yonezawa, Hiroi, Kaji, and
+  Kawaguchi]{9492117}
+Matsuyama, H.; Aoki, S.; Yonezawa, T.; Hiroi, K.; Kaji, K.; Kawaguchi, N.
+\newblock Deep Learning for Ballroom Dance Recognition: A Temporal and
+  Trajectory-Aware Classification Model With Three-Dimensional Pose Estimation
+  and Wearable Sensing.
+\newblock {\em IEEE Sensors J.} {\bf 2021}, {\em 21},~25437--25448.
+\newblock {{https://doi.org/10.1109/JSEN.2021.3098744}}.
+
+\bibitem[Watanabe \em{et~al.}(2019)Watanabe, Hiroi, Kamiyama, Sano, Tsukamoto,
+  Katagiri, Ikeda, Kaji, and Kawaguchi]{KosukeWatanabe2019}
+Watanabe, K.; Hiroi, K.; Kamiyama, T.; Sano, H.; Tsukamoto, M.; Katagiri, M.;
+  Ikeda, D.; Kaji, K.; Kawaguchi, N.
+\newblock A Smartphone 3D Positioning Method using a Spinning Magnet Marker.
+\newblock {\em J. Inf. Process.} {\bf 2019}, {\em 27},~10--24.
+\newblock {{https://doi.org/10.2197/ipsjjip.27.10}}.
+
+\bibitem[Wang \em{et~al.}(2016)Wang, Sakurada, and Kawaguchi]{rs8110967}
+Wang, W.; Sakurada, K.; Kawaguchi, N.
+\newblock Incremental and Enhanced Scanline-Based Segmentation Method for
+  Surface Reconstruction of Sparse LiDAR Data.
+\newblock {\em Remote Sens.} {\bf 2016}, {\em 8}, 967.
+\newblock {{https://doi.org/10.3390/rs8110967}}.
+
+\bibitem[Kasai \em{et~al.}(2009)Kasai, Ikeda, Asahina, and
+  Fujisawa]{KASAI200957}
+Kasai, M.; Ikeda, M.; Asahina, T.; Fujisawa, K.
+\newblock LiDAR-derived DEM evaluation of deep-seated landslides in a steep and
+  rocky region of Japan.
+\newblock {\em Geomorphology} {\bf 2009}, {\em 113},~57--69.
+%\newblock Understanding earth surface processes from remotely sensed digital terrain models, % Authors: not necessary, we deleted it.
+  {{https://doi.org/10.1016/j.geomorph.2009.06.004}}.
+
+\bibitem[Kondo \em{et~al.}(2008)Kondo, Toda, Okumura, Takada, and
+  Chiba]{KONDO2008731}
+Kondo, H.; Toda, S.; Okumura, K.; Takada, K.; Chiba, T.
+\newblock A fault scarp in an urban area identified by LiDAR survey: A Case
+  study on the Itoigawa–Shizuoka Tectonic Line, central Japan.
+\newblock {\em Geomorphology} {\bf 2008}, {\em 101},~731--739.\linebreak
+\newblock {{https://doi.org/10.1016/j.geomorph.2008.02.012}}.
+
+\bibitem[Becker \em{et~al.}(2013)Becker, Wilks, Brownrigg, and
+  Minka]{Beckeretal2013}
+Becker, R.A.; Wilks, A.R.; Brownrigg, R.; Minka, T.P.
+\newblock maps: Draw Geographical Maps. R Package Version 2.3-2. 2013. Available online: \url{http://CRAN.R-project.org/package=maps}  (accessed on 23 December 2022).%MDPI: Please add the access date (format: Date Month Year), e.g., accessed on 1 January 2020. % Authors: corrected.
+
+\bibitem[Tennekes(2018)]{JSSv084i06}
+Tennekes, M.
+\newblock tmap: Thematic Maps in R.
+\newblock {\em J. Stat. Softw.} {\bf 2018}, {\em 84},~1--39.
+\newblock {{https://doi.org/10.18637/jss.v084.i06}}.
+
+\bibitem[Aoyama(2005)]{Aoyama2005}
+Aoyama, M.
+\newblock Rock glaciers in the northern Japanese Alps: palaeoenvironmental
+  implications since the Late Glacial.
+\newblock {\em J. Quat. Sci.} {\bf 2005}, {\em 20},~471--484.
+\newblock {{https://doi.org/10.1002/jqs.935}}.
+
+\bibitem[Oguchi \em{et~al.}(2001)Oguchi, Saito, Kadomura, and
+  Grossman]{OGUCHI20013}
+Oguchi, T.; Saito, K.; Kadomura, H.; Grossman, M.
+\newblock Fluvial geomorphology and paleohydrology in Japan.
+\newblock {\em Geomorphology} {\bf 2001}, {\em 39},~3--19.
+%\newblock Contributions to Temperate and Humid Tropical Palaeohydrology, % Authors: not necessary, we deleted it.
+  {{https://doi.org/10.1016/S0169-555X(01)00048-4}}.
+
+\bibitem[Fujisawa \em{et~al.}(2010)Fujisawa, Marcato, Nomura, and
+  Pasuto]{FUJISAWA2010150}
+Fujisawa, K.; Marcato, G.; Nomura, Y.; Pasuto, A.
+\newblock Management of a typhoon-induced landslide in Otomura (Japan).
+\newblock {\em Geomorphology} {\bf 2010}, {\em 124},150--156.
+%\newblock Recent advances in landslide investigation, % Authors: not necessary, we deleted it.
+  {{https://doi.org/10.1016/j.geomorph.2010.09.027}}.
+
+\bibitem[Tsunetaka(2021)]{Tsunetaka}
+Tsunetaka, H.
+\newblock Comparison of the return period for landslide-triggering rainfall
+  events in Japan based on standardization of the rainfall period.
+\newblock {\em Earth Surf. Process. Landforms} {\bf 2021}, {\em
+  46},~2984--2998.
+\newblock {{https://doi.org/10.1002/esp.5228}}.
+
+\bibitem[Oku and Nakakita(2013)]{Oku}
+Oku, Y.; Nakakita, E.
+\newblock Future change of the potential landslide disasters as evaluated from
+  precipitation data simulated by MRI-AGCM3.1.
+\newblock {\em Hydrol. Process.} {\bf 2013}, {\em 27},~3332--3340.
+\newblock {{https://doi.org/10.1002/hyp.9833}}.
+
+\bibitem[Sogno \em{et~al.}(2022)Sogno, Klein, and Kuenzer]{rs14102475}
+Sogno, P.; Klein, I.; Kuenzer, C.
+\newblock Remote Sensing of Surface Water Dynamics in the Context of Global
+  Change---A Review.
+\newblock {\em Remote Sens.} {\bf 2022}, {\em 14}, 2475.
+\newblock {{https://doi.org/10.3390/rs14102475}}.
+
+\bibitem[Yamada \em{et~al.}(2013)Yamada, Kumagai, Matsushi, and
+  Matsuzawa]{Yamada}
+Yamada, M.; Kumagai, H.; Matsushi, Y.; Matsuzawa, T.
+\newblock Dynamic landslide processes revealed by broadband seismic records.
+\newblock {\em Geophys. Res. Lett.} {\bf 2013}, {\em 40},~2998--3002.
+\newblock {{https://doi.org/10.1002/grl.50437}}.
+
+\bibitem[Wang \em{et~al.}(2010)Wang, Suemine, and Schulz]{Wangetal2010}
+Wang, G.; Suemine, A.; Schulz, W.H.
+\newblock Shear-rate-dependent strength control on the dynamics of
+  rainfall-triggered landslides, Tokushima Prefecture, Japan.
+\newblock {\em Earth Surf. Process. Landforms} {\bf 2010}, {\em
+  35},~407--416.
+\newblock {{https://doi.org/https://doi.org/10.1002/esp.1937}}.
+
+\bibitem[Hirata and Chigira(2019)]{HIRATA2019105217}
+Hirata, Y.; Chigira, M.
+\newblock Landslides associated with spheroidally weathered mantle of granite
+  porphyry induced by 2011 Typhoon Talas in the Kii Peninsula, Japan.
+\newblock {\em Eng. Geol.} {\bf 2019}, {\em 260},~105217.
+\newblock {{https://doi.org/10.1016/j.enggeo.2019.105217}}.
+
+\bibitem[Prima \em{et~al.}(2006)Prima, Echigo, Yokoyama, and
+  Yoshida]{PRIMA2006373}
+Prima, O.D.A.; Echigo, A.; Yokoyama, R.; Yoshida, T.
+\newblock Supervised landform classification of Northeast Honshu from
+  DEM-derived thematic maps.
+\newblock {\em Geomorphology} {\bf 2006}, {\em 78},~373--386.
+\newblock {{https://doi.org/10.1016/j.geomorph.2006.02.005}}.
+
+\bibitem[Lin and Oguchi(2004)]{LIN2004159}
+Lin, Z.; Oguchi, T.
+\newblock Drainage density, slope angle, and relative basin position in
+  Japanese bare lands from high-resolution DEMs.
+\newblock {\em Geomorphology} {\bf 2004}, {\em 63},~159--173.
+\newblock {{https://doi.org/10.1016/j.geomorph.2004.03.012}}.
+
+\bibitem[Hayakawa and Oguchi(2006)]{HAYAKAWA200690}
+Hayakawa, Y.S.; Oguchi, T.
+\newblock DEM-based identification of fluvial knickzones and its application to
+  Japanese mountain rivers.
+\newblock {\em Geomorphology} {\bf 2006}, {\em 78},~90--106.
+%\newblock Mountain Rivers Part I: Watershed Scale Processes and Channel Morphology, % Authors: not necessary, we deleted it.
+  {{https://doi.org/10.1016/j.geomorph.2006.01.018}}.
+
+\end{thebibliography}
+
+\PublishersNote{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{adjustwidth}
+\end{document}
