@@ -40,10 +40,10 @@ gmt psscale -Dg122.0/30.0+w8.0c/0.4c+v+o0.0/0.5c+ml \
 gmt grdview jp_relief2.nc -J -R -JZ3.0c -Cmyocean.cpt \
     -p115/30 -Qsm -N-9787+glightgray \
     -Wm0.07p -Wf0.1p,red \
-    -B2.0/2.0/3000:"Bathymetry and topography (m)":ESwZ -S5 -Y5.0c \
+    -B2.0/2.0/4000:"Bathymetry and topography (m)":ESwZ -S5 -Y5.0c \
     --FORMAT_GEO_MAP=ddd:mm:ss \
     --FONT_LABEL=8p,0,darkblue \
-    --FONT_ANNOT_PRIMARY=8p,0,black \
+    --FONT_ANNOT_PRIMARY=7p,0,black \
     --MAP_FRAME_PEN=black -O -K >> $ps
 # Add GMT logo
 gmt logo -Dx10.5/-5.5+o0.0c/-0.5c+w2c -O -K >> $ps
